@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AcivitySelect ¾È³çdd
+ * Servlet implementation class AcivitySelect ¾È³çdd¾Æ¿À
  */
 @WebServlet("/AcivitySelect")
 public class AcivitySelectServlet extends HttpServlet {
