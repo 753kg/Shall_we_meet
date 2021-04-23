@@ -1,5 +1,5 @@
 package shallWe.DAO;
 
 public class MemberDAO {
-//김유연
+//되겠죠?
 }
