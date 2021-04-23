@@ -1,4 +1,4 @@
-package shallweController;
+package shallWe.Controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FindDeparture
+ * Servlet implementation class Makeplan
  */
-@WebServlet("/FindDeparture")
-public class FindDeparture extends HttpServlet {
+@WebServlet("/Makeplan")
+public class MakeplanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindDeparture() {
+    public MakeplanServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

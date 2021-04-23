@@ -1,4 +1,4 @@
-package shallweController;
+package shallWe.Controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AcivitySelect dd
+ * Servlet implementation class DateSelect
  */
-@WebServlet("/AcivitySelect")
-public class AcivitySelect extends HttpServlet {
+@WebServlet("/DateSelect")
+public class DateSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AcivitySelect() {
+    public DateSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
