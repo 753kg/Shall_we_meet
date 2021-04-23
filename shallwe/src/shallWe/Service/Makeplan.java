@@ -1,4 +1,4 @@
-package shallweService;
+package shallWe.Service;
 
 public class Makeplan {
 
