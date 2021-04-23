@@ -1,7 +1,5 @@
 package shallWe.DAO;
 
 public class MemberDAO {
-
-	
-int i =1;
+// 테스트 끝
 }
