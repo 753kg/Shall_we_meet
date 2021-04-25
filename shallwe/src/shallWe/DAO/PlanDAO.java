@@ -61,7 +61,7 @@ public class PlanDAO {
 		try {
 			st = conn.prepareStatement(sql);
 			st.setString(1, memberid);
-			st.executeQuery();
+			rs = st.executeQuery();
 			while (rs.next()) {
 				plist.add(makePlan(rs));
 			}
