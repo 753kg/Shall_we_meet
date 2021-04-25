@@ -26,7 +26,7 @@ public class ActivityDAO {
 		try {
 			st = conn.prepareStatement(sql);
 			st.setString(1, location_name);
-			st.executeQuery();
+			rs = st.executeQuery();
 			while (rs.next()) {
 				rlist.add(makeRestaurant(rs));
 			}
@@ -41,7 +41,7 @@ public class ActivityDAO {
 	}
 	
 	// cafe 조회
-	public List<CafeVO> selectCafetByLocationName(String location_name) {
+	public List<CafeVO> selectCafeByLocationName(String location_name) {
 		List<CafeVO> clist = new ArrayList<>();
 		String sql = "select * from cafes where location_name = ?";
 
@@ -52,7 +52,7 @@ public class ActivityDAO {
 		try {
 			st = conn.prepareStatement(sql);
 			st.setString(1, location_name);
-			st.executeQuery();
+			rs = st.executeQuery();
 			while (rs.next()) {
 				clist.add(makeCafe(rs));
 			}
@@ -79,7 +79,7 @@ public class ActivityDAO {
 		try {
 			st = conn.prepareStatement(sql);
 			st.setString(1, location_name);
-			st.executeQuery();
+			rs = st.executeQuery();
 			while (rs.next()) {
 				alist.add(makeActivity(rs));
 			}
