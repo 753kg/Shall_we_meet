@@ -54,7 +54,7 @@ public class MemberDAO {
 			st = conn.prepareStatement(sql);
 			st.setString(1, memberid);
 			st.setString(2, memberpw);
-			st.executeQuery();
+			rs = st.executeQuery();
 			while (rs.next()) {
 				m = makeMember(rs);
 			}
