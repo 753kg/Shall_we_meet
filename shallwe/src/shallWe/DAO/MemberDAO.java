@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import shallWe.Util.DBUtil;
 import shallWe.VO.MemberVO;
 
 public class MemberDAO {

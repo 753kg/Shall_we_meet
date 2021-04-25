@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import shallWe.Util.DBUtil;
 import shallWe.VO.ActivityVO;
 import shallWe.VO.CafeVO;
 import shallWe.VO.RestaurantVO;
