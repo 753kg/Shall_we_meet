@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shallWe.DAO.ActivityDAO;
+
 /**
- * Servlet implementation class AcivitySelect ¾È³çdd¾Æ¿À
+ * Servlet implementation class AcivitySelect ï¿½È³ï¿½ddï¿½Æ¿ï¿½
  */
 @WebServlet("/AcivitySelect")
 public class AcivitySelectServlet extends HttpServlet {
@@ -22,12 +24,14 @@ public class AcivitySelectServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
