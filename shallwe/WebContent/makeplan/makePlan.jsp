@@ -38,7 +38,7 @@
 		</div>
 		<%-- hidden 으로 보내기 --%>
 		<div>
-			<input type="hidden" id="host_id" name="host_id" value="testid">
+			<input type="hidden" id="host_id" name="host_id" value="${memberid }">
 		</div>
 		<button type="button" id="btn_submit">완료</button>
 		<!-- <input type="submit" value="완료"> -->
