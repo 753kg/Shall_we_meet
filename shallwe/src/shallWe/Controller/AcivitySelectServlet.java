@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shallWe.DAO.ActivityDAO;
+
 /**
- * Servlet implementation class AcivitySelect æ»≥Áddæ∆ø¿
+ * Servlet implementation class AcivitySelect ÔøΩ»≥ÔøΩddÔøΩ∆øÔøΩ
  */
 @WebServlet("/AcivitySelect")
 public class AcivitySelectServlet extends HttpServlet {
@@ -28,6 +30,9 @@ public class AcivitySelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ActivityDAO dao = new ActivityDAO();
+		System.out.println(dao.selectActivityByLocationName("ÌôçÎåÄ"));
+		
 	}
 
 	/**

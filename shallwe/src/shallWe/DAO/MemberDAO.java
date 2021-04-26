@@ -77,5 +77,4 @@ public class MemberDAO {
 		m.setSecurity(rs.getString("security"));
 		return m;
 	}
->>>>>>> refs/heads/main
 }
