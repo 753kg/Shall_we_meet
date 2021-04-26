@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Shall We Meet?</title>
 </head>
 <body>
-
+	<ul>
+		<% String memberid = (String) session.getAttribute("memberid"); %>
+		<% if(memberid == null) {%>
+			<li><a href="../login/login.jsp">로그인</a></li>
+		<%} else { %>
+			<li><a href="../Logout">로그아웃</a></li>
+		<%}%>
+		<li><a href="../makeplan/PlanSelectServlet">약속조회</a></li>
+	</ul>
+	
+	
 </body>
 </html>
