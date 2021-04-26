@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<h3><label for="register_email">이메일</label></h3>
-			<input type="text" id="register_email" name="register_email">
+			<input type="email" id="register_email" name="register_email">
 		</div>
 		<div>
 			<h3><label for="register_phone">전화번호</label></h3>
