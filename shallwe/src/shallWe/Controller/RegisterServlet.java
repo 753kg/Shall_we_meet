@@ -7,35 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shallWe.VO.MemberVO;
+
 /**
  * Servlet implementation class Register
  */
-@WebServlet("/Register")
+@WebServlet("/login/Register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String register_id = (String) request.getAttribute("register_id");
+		String register_pw = (String) request.getAttribute("register_pw");
+		String register_name = (String) request.getAttribute("register_name");
+		String register_email = (String) request.getAttribute("register_email");
+		String register_phone = (String) request.getAttribute("register_phone");
+		String register_security = (String) request.getAttribute("register_security");
+		
+		MemberVO new_mem = new MemberVO();
 	}
 
 }
