@@ -12,7 +12,23 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DBUtil {
-	
+	public static Connection getConnection() {
+		Connection conn = null;
+		String driverName = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String userid = "pdbtest", password = "pdbtest";
+		
+		try {
+			Class.forName(driverName);
+			conn = DriverManager.getConnection(url, userid, password);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}
+	/*
 	// Connection Pool
 	public static Connection getConnection() {
 		Connection conn = null;
@@ -33,6 +49,7 @@ public class DBUtil {
 		
 		return conn;
 	}
+	*/
 	
 	// 2. �ڿ� �ݳ�
 	public static void dbClose(ResultSet rs, Statement st, Connection conn) {
