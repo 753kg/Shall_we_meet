@@ -34,7 +34,6 @@ public class DBUtil {
 		return conn;
 	}
 	
-	// 2. �ڿ� �ݳ�
 	public static void dbClose(ResultSet rs, Statement st, Connection conn) {
 		try {
 			if(rs != null) rs.close();

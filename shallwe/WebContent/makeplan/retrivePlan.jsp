@@ -32,7 +32,7 @@
 		btn_makePlan.onclick = toMakePlanPage;
 		
 		function toMakePlanPage(){
-			location.href = "makePlan.jsp";
+			location.href = "Makeplan";
 		}
 	</script>
 </body>
