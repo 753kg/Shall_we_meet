@@ -40,7 +40,7 @@ public class HotplaceDAO {
 
 	
 
-	// 가장 가까운 핫플레이스 이름 select
+	
 	
 	
 	//makehotplace

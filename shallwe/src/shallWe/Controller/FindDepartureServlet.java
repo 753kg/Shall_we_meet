@@ -26,8 +26,11 @@ public class FindDepartureServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String lat = request.getParameter("lat");//위도
+		String lon = request.getParameter("lon");//경도
+		
+		System.out.println("경도 :"+lat);
+		System.out.println("위도 :"+lon);
 	}
 
 	/**
