@@ -26,14 +26,33 @@
 		</div>
 	</c:forEach>
 	
-	<button id="btn_makePlan">약속만들기</button>
+	<button type="button" id="btn_makePlan">약속만들기</button>
+	<hr>
+	<form id="hlist" action="AcivitySelect">
+	</form>
 	
 	<script type="text/javascript">
 		btn_makePlan.onclick = toMakePlanPage;
 		
+		hotplaces = ['홍대', '이태원', '잠실'];
+		makeBtn(hotplaces);
+		
 		function toMakePlanPage(){
 			location.href = "Makeplan";
 		}
+		
+		function makeBtn(hosplaces){
+			
+		 for(let i=0; i<hotplaces.length; i++){
+				var atr = hotplaces[i];
+				var newBtn = document.createElement("input");
+				newBtn.type = "submit";
+				newBtn.value = atr;
+				newBtn.name = "location_name";
+				hlist.appendChild(newBtn);
+			}
+		}
+		
 	</script>
 </body>
 </html>

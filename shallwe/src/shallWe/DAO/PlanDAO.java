@@ -15,19 +15,19 @@ public class PlanDAO {
 	// 1. plan Insert
 	// 2. members_plans Insert
 	// 3. date_options Insert
-	public int insertPlan(String plan_name, String host_id, int numbers) {
+	public int insertPlan(String plan_id, String plan_name, String host_id, int numbers) {
 		int result = 0;
 		String sql = " insert into plans(plan_id, plan_name, host_id, numbers)" + 
-					" values(plans_seq.nextval, ?, ?, ?)";
+					" values(?, ?, ?, ?)";
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement st = null;
 
-		// 학원가서 try-catch-finally 하기
 		try {
 			st = conn.prepareStatement(sql);
-			st.setString(1, plan_name);
-			st.setString(2, host_id);
-			st.setInt(3, numbers);
+			st.setString(1, plan_id);
+			st.setString(2, plan_name);
+			st.setString(3, host_id);
+			st.setInt(4, numbers);
 			result = st.executeUpdate();
 		} catch (SQLException e) {
 			try {

@@ -10,4 +10,8 @@ public class MemberService {
 	public int insertMember(MemberVO m) {
 		return dao.insertMember(m);
 	}
+	
+	public MemberVO loginChk(String memberid, String memberpw) {
+		return dao.loginChk(memberid, memberpw);
+	}
 }

@@ -37,4 +37,31 @@ public class MemberPlanDAO {
 		return null;
 	}
 	
+	public int insertMemberPlan(String plan_id, String member_id) {
+		int result = 0;
+		String sql = " insert into members_plans(plan_id, member_id)" + 
+					" values(?, ?)";
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, plan_id);
+			st.setString(2, member_id);
+			result = st.executeUpdate();
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(null, st, conn);
+		}
+
+		return result;
+	}
+	
 }

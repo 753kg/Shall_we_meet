@@ -77,7 +77,6 @@
 			
 			var newInput = document.createElement("input");
 			newInput.type = "text";
-			//newInput.id = atr;
 			newInput.name = atr;
 			newInput.placeholder = "친구아이디입력";
 			
