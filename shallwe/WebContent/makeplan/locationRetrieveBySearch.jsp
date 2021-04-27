@@ -204,7 +204,7 @@
 			<div class="option">
 				<div>
 					<form onsubmit="searchPlaces(); return false;">
-						키워드 : <input type="text" value="" id="keyword" size="15">
+						키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
 						<button type="submit">검색하기</button>
 					</form>
 				</div>
@@ -283,9 +283,11 @@
 		// 검색 결과 목록과 마커를 표출하는 함수입니다
 		function displayPlaces(places) {
 
-			var listEl = document.getElementById('placesList'), menuEl = document
-					.getElementById('menu_wrap'), fragment = document
-					.createDocumentFragment(), bounds = new kakao.maps.LatLngBounds(), listStr = '';
+			var listEl = document.getElementById('placesList'), 
+				menuEl = document.getElementById('menu_wrap'), 
+				fragment = document.createDocumentFragment(), 
+				bounds = new kakao.maps.LatLngBounds(), 
+				listStr = '';
 
 			// 검색 결과 목록에 추가된 항목들을 제거합니다
 			removeAllChildNods(listEl);
@@ -293,15 +295,14 @@
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
 
-			$("#lat").val(places[1].x);
-			$("#lon").val(places[1].y);
+			
 
 			for (var i = 0; i < places.length; i++) {
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(places[i].y,
-						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
-						i, places[i]); // 검색 결과 항목 Element를 생성합니다
+						places[i].x), marker = addMarker(placePosition, i), 
+						itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
@@ -310,12 +311,21 @@
 				// 마커와 검색결과 항목에 mouseover 했을때
 				// 해당 장소에 인포윈도우에 장소명을 표시합니다
 				// mouseout 했을 때는 인포윈도우를 닫습니다
-				(function(marker, title) {
+				 (function(marker, title) {
 					kakao.maps.event.addListener(marker, 'mouseover',
 							function() {
-								displayInfowindow(marker, title);
+								displayInfowindow(marker, title); 
+								
+								
 							});
-
+					
+					//위도경도 값 서블릿에 넘기기
+					kakao.maps.event.addListener(marker, 'click', function() {        
+						alert('marker click!');
+					    $("#location").val(placePosition);
+					   	
+					});
+					
 					kakao.maps.event.addListener(marker, 'mouseout',
 							function() {
 								infowindow.close();
@@ -349,7 +359,7 @@
 					+ '"></span>'
 					+ '<div class="info">'
 					+ '   <h5>' + places.place_name + '</h5>';
-
+			
 			if (places.road_address_name) {
 				itemStr += '    <span>' + places.road_address_name + '</span>'
 						+ '   <span class="jibun gray">' + places.address_name
@@ -395,7 +405,9 @@
 			}
 			markers = [];
 		}
-
+		
+		
+  
 		// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
 		function displayPagination(pagination) {
 			var paginationEl = document.getElementById('pagination'), fragment = document
@@ -447,9 +459,8 @@
 
 
 	<form id="aa" action="../FindDeparture" method="post">
-		<input type="text" name="lat" id="lat" value=""> <input
-			type="text" name="lon" id="lon" value=""> <input
-			type="submit" value="수정하기">
+		<input type="text" name="location" id="location" value=""> 
+		 <input type="submit" value="수정하기">
 	</form>
 	<script>
 
