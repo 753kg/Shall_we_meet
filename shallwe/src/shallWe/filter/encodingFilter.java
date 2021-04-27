@@ -1,6 +1,5 @@
 package shallWe.filter;
 
-
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -31,6 +30,5 @@ public class encodingFilter implements Filter {
 		chain.doFilter(request, response);
 
 	}
-
 }
 

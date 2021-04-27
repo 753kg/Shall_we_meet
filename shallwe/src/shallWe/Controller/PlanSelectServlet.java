@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shallWe.DAO.ActivityDAO;
-
 /**
- * Servlet implementation class AcivitySelect �ȳ�dd�ƿ�
+ * Servlet implementation class PlanSelectServlet
  */
-@WebServlet("/AcivitySelect")
-public class AcivitySelectServlet extends HttpServlet {
+@WebServlet("/PlanSelectServlet")
+public class PlanSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AcivitySelectServlet() {
+    public PlanSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
