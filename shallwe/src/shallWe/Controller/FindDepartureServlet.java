@@ -2,8 +2,10 @@ package shallWe.Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +32,13 @@ public class FindDepartureServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+		RequestDispatcher rd = request.getRequestDispatcher("makeplan/locationRetrieveBySearch.jsp");
+		rd.forward(request, response);
+
 	}
 
 	/**
@@ -40,7 +47,10 @@ public class FindDepartureServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberPlanService mps = new MemberPlanService();
 		double[] locationList=mps.convertToDouble(request.getParameter("location"));
+		System.out.println(Arrays.toString(locationList));
 		mps.insertMemberLocation(locationList[0],locationList[1]);
+		
+
 	}
 
 }

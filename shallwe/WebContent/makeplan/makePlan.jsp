@@ -10,6 +10,10 @@
 		display: block;
 	}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script>
 </head>
 <body>
 	<h1>makePlanPage</h1>
@@ -43,7 +47,7 @@
 		<button type="button" id="btn_submit">완료</button>
 		<!-- <input type="submit" value="완료"> -->
  </form>
-	
+	<div id ="ajaxTest"></div>
 	<script>
 		btn_date.onclick = form1;
 		btn_place.onclick = form2;
@@ -113,6 +117,32 @@
 			makePlanForm.appendChild(cdiv);
 			makePlanForm.submit();
 		}
+		
+		$(function() {
+		$("#btn_place").on("click", function() {
+			$.ajax({
+				url:"locationRetrieveBySearch.jsp",
+				type:"get",
+				success:function(responsedata){
+					$("#ajaxTest").html(responsedata);
+				},
+				error:function(){}
+			}); 
+			});
+		})
+		
+		$(function() {
+		$("#btn_datePlace").on("click", function() {
+			$.ajax({
+				url:"locationRetrieveBySearch.jsp",
+				type:"get",
+				success:function(responsedata){
+					$("#ajaxTest").html(responsedata);
+				},
+				error:function(){}
+			}); 
+			});
+		})
 	</script>
 </body>
 </html>
