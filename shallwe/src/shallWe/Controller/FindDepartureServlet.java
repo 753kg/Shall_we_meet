@@ -47,8 +47,8 @@ public class FindDepartureServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberPlanService mps = new MemberPlanService();
 		double[] locationList=mps.convertToDouble(request.getParameter("location"));
-		System.out.println(Arrays.toString(locationList));
-		mps.insertMemberLocation(locationList[0],locationList[1]);
+		
+		//mps.insertMember(member_id,plan_id,locationList[0],locationList[1]);
 		
 
 	}

@@ -34,6 +34,7 @@ public class MakeplanServlet extends HttpServlet {
 		String host_date = request.getParameter("host_date");
 		String host_place = request.getParameter("host_place");
 		
+		
 		String plan_id = host_id + System.currentTimeMillis();
 		
 		List<String> friend_id_list = new ArrayList<>();

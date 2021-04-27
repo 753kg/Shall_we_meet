@@ -13,11 +13,23 @@
 <style>
 	.plans { border: 1px solid black; }
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+function() {
+	
+	$(".plans").click(function() {
+		
+		
+	})
+}
+
+</script>
 </head>
 <body>
 	<c:forEach var="plan" items="${planlist }">
 		<div class="plans">
-			<p>plan_id : ${plan.plan_id }</p>
+			<p id="plan_id">plan_id : ${plan.plan_id }</p>
 			<p>plan_name : ${plan.plan_name }</p>
 			<p>host_id : ${plan.host_id }</p>
 			<p>fixed_date : ${plan.fixed_date }</p>

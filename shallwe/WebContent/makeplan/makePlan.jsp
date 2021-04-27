@@ -137,6 +137,7 @@
 				url:"locationRetrieveBySearch.jsp",
 				type:"get",
 				success:function(responsedata){
+					
 					$("#ajaxTest").html(responsedata);
 				},
 				error:function(){}
