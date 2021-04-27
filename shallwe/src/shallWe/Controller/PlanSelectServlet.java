@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import shallWe.DAO.PlanDAO;
+import shallWe.Service.PlanService;
 import shallWe.VO.PlanVO;
 
 /**
@@ -23,16 +24,17 @@ public class PlanSelectServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 약속 조회
-		PlanDAO dao = new PlanDAO();
+		
+		PlanService service = new PlanService();
 		HttpSession session = request.getSession();
 		String memberid = (String) session.getAttribute("memberid");
 		if(memberid == null) {
 			response.sendRedirect("../login/login.jsp");
 		}
 		else {
-			List<PlanVO> planlist = dao.selectPlanByMemberId(memberid);
+			List<PlanVO> planlist = service.selectPlanByMemberId(memberid);
 			request.setAttribute("planlist", planlist);
-			RequestDispatcher rd = request.getRequestDispatcher("retrivePlan.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("retrievePlan.jsp");
 			rd.forward(request, response);
 		}
 	}
