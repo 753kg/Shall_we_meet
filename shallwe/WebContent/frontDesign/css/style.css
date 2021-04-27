@@ -4,37 +4,61 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ 
+ /*font*/
+@font-face {
+  font-family: 'LotteMartHappy';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff');
+}
 
+@font-face {
+  font-family: 'LotteMartHappy';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff') format('woff');
+}
+
+.lottemarthappy * {
+ font-family: 'LotteMartHappy';
+}
  @font-face {
   font-family: 'Cafe24Oneprettynight';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
+/*main.jsp*/
 .text p{
   font-family: 'Cafe24Oneprettynight';
   font-size: 19px;
 }
  #maintext{
   position:absolute; 
-  top:35%; 
-  left:30%;  
+  top:50%; 
+  left: 50%;
+	transform: translate( -50%, -50% );
   width:800px; 
 }	
 #subtext{
+	margin:0px auto;
   position:absolute; 
-  top:58%; 
-  left:38.5%; 
+  top:62%; 
+  left: 50%;
+	transform: translate( -50%, -50% );
   width:450px; 
 }
 .new-plan-btn {
   position: absolute;
-  top:70%;
-  left:45%; 
+  top:72%;
+  left: 50%;
+  transform: translate( -50%, -50% );
   background-color:  rgb(255,220,104); /* Green */
   border: none;
   border-radius: 4px;
-  color: white;
+  color: black;
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
@@ -44,24 +68,79 @@
   transition-duration: 0.4s;
   cursor: pointer;
 }
-
-.new-plan-btn {
- 
-  color: black; 
- 
-}
-
 .new-plan-btn:hover {
   background-color:rgb(39,39,39);
   color: white;
-  letter-spacing: 1px;
+  letter-spacing: 5px;
 }
-
 .my-icon{
   width:60px;
-
 }
 
+/*makePlan.jsp*/
+.header-title25{
+	height:60px;
+}
+
+/*makePlan.jsp-host-select*/
+.host-select25{
+	width:650px;
+	position:absolute; 
+	left:25%;
+	top:525px;
+}
+.host-select25 > button{
+	border:none;
+	background: none;
+	padding:0;
+}
+.host-select25 > image{
+	margin:0;
+	padding:0;
+}
+#btn_datePlace{
+	padding:2px;
+}
+
+/*makePlan.jsp-form*/
+#makePlanForm{
+	position:absolute; 
+	left:60%;
+	top:550px;
+}
+#friend_list > input {
+		display: block;
+	}
+
+/*login.jsp*/
+.login_area{
+	top:600px;
+	position:absolute; 
+	left: 50%;
+	transform: translate( -50%, -50% );
+}
+#btn_submit{
+	 width:300px; 
+	 background-color: black; 
+	 color:white;
+}
+
+/*register.jsp*/
+#register25{
+	width:500px;
+	top:800px;
+	position:absolute; 
+	left: 50%;
+	transform: translate( -50%, -50% );
+}
+
+
+
+
+
+
+
+/*template*/
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -115,7 +194,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #000;
   text-align: left;
   background-color: #fff; }
 
@@ -8059,7 +8138,7 @@ body {
   font-size: 16px;
   line-height: 1.8;
   font-weight: 300;
-  color: gray; }
+  color: black; }
   body.menu-show {
     overflow: hidden;
     position: fixed;
