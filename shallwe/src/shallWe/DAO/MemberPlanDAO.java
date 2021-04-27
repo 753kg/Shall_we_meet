@@ -37,10 +37,10 @@ public class MemberPlanDAO {
 		return null;
 	}
 	
-	public int insertMemberPlan(String plan_id, String member_id) {
+	public int insertMemberPlan(String plan_id, String member_id, double lat, double lon) {
 		int result = 0;
-		String sql = " insert into members_plans(plan_id, member_id)" + 
-					" values(?, ?)";
+		String sql = " insert into members_plans(plan_id, member_id, lat, lon)" + 
+					" values(?, ?, ?, ?)";
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement st = null;
 
@@ -48,6 +48,8 @@ public class MemberPlanDAO {
 			st = conn.prepareStatement(sql);
 			st.setString(1, plan_id);
 			st.setString(2, member_id);
+			st.setDouble(3, lat);
+			st.setDouble(4, lon);
 			result = st.executeUpdate();
 		} catch (SQLException e) {
 			try {

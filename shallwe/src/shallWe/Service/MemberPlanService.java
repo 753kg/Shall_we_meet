@@ -6,7 +6,8 @@ import java.util.List;
 import shallWe.DAO.MemberPlanDAO;
 
 public class MemberPlanService {
-
+	MemberPlanDAO mpdao = new MemberPlanDAO();
+	
 	public double[] convertToDouble(String temp) {
 		// (37.5334512248726, 126.994610005044)
 		String str = temp;
@@ -38,7 +39,11 @@ public class MemberPlanService {
 	}
 	
 	public int insertMemberLocation(Double lat,Double lon) {
-		MemberPlanDAO mpdao = new MemberPlanDAO();
+		
 		return mpdao.insertMemberLocation(lat, lon);
+	}
+	
+	public int insertMemberPlan(String plan_id, String member_id, double lat, double lon) {
+		return mpdao.insertMemberPlan(plan_id, member_id, lat, lon);
 	}
 }
