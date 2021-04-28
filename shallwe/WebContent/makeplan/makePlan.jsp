@@ -4,7 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>새 약속 만들기</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/animate.css">   
+    <link rel="stylesheet" href="../frontDesign/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/magnific-popup.css">
+    <link rel="stylesheet" href="../frontDesign/css/flaticon.css">
+    <link rel="stylesheet" href="../frontDesign/css/style.css">
+
 <style>
 	#friend_list > input {
 		display: block;
@@ -165,45 +176,69 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70&libraries=services"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e4f8aeb0d5079a18f159c0c6462fa4de&libraries=services"></script>
+
+
 </head>
+
 <body>
-	<h1>makePlanPage</h1>
-	<button id="btn_date">날짜</button>
-	<button id="btn_place">장소</button>
-	<button id="btn_datePlace">날짜 + 장소</button>
-	
-	
-	<form id="makePlanForm" action="Makeplan" method="post">  
-		<div>
-			<label for="plan_name"></label>
-			<input type="text" id="plan_name" name="plan_name" placeholder="약속이름">
+
+	<%@include file="../frontDesign/header.jsp" %>
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('../frontDesign/imageSource/배경이미지.png');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate mb-5 text-center">
+          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="../mainView/main.jsp">Home <i class="fa fa-chevron-right"></i></a></span> <span>약속 <i class="fa fa-chevron-right"></i></span></p>
+            <img class="header-title25" src ="../frontDesign/imageSource/새약속만들기.png"> 
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+   <section>
+   <div class="content25">
+   	<div class="host-select25">
+   		<button id="btn_date"><img src="../frontDesign/imageSource/selectdate2.png" style="width:300px"></button>
+   		<button id="btn_place"><img src="../frontDesign/imageSource/selectplace2.png" style="width:300px"></button>
+   		<br>
+   		<button id="btn_datePlace"><img src="../frontDesign/imageSource/selectboth2.png" style="width:605px"></button>
+   	</div>
+   	
+   	<form id="makePlanForm" action="Makeplan" method="post" class="billing-form" >
+		<div class="form-group">
+			<label for="plan_name">약속 이름</label>
+			<input type="text" class="form-control" id="plan_name" name="plan_name" style="width:300px;"  placeholder="약속의 이름을 입력해주세요.">
 		</div>
 		<%-- 장소 버튼 누르면 사라짐 --%>
-		<div id="select_date">
-			<label for="host_date"></label>
-			<input type="date" id="host_date" name="host_date" placeholder="날짜선택">
+		<div id="select_date" class="form-group">
+			<label for="host_date">가능한 날짜</label>
+			<input type="date" class="form-control" id="host_date" name="host_date" placeholder="날짜를 선택해주세요.">
 		</div>
 		<%-- 날짜 버튼 누르면 사라짐 --%>
-		<div id="select_place">
-			<label for="host_place"></label>
-			<input type="text" id="host_place" name="host_place" placeholder="장소선택">
+		<div id="select_place" class="form-group">
+			<label for="host_place">출발지</label>
+			<input type="text" class="form-control" id="host_place" name="host_place" placeholder="출발지를 선택해주세요.">
 		</div>
-		<button type="button" id="btn_invite">친구초대</button>
+		<button type="button" id="btn_invite" style="width:300px;"  >친구 추가하기</button>
 		<div id="friend_list">
 		</div>
 		<%-- hidden 으로 보내기 --%>
-		<div>
+		<div class="form-group">
 			<input type="hidden" id="host_id" name="host_id" value="${memberid }">
 			<input type="hidden" id="host_lat" name="host_lat">
 			<input type="hidden" id="host_lon" name="host_lon">
 		</div>
-		<button type="button" id="btn_submit">완료</button>
-		</div>
- </form>
+				<button type="button" id="btn_submit" style="width:300px; background-color: black; color:white;"  >완료</button>
+		<!-- <input type="submit" value="완료"> -->
+ 	</form>
+		
+
 	<div class="map_wrap">
 		<div id="map"
-			style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+			style="width: 50%; height: 50%; position: relative; overflow: hidden;"></div>
 
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
@@ -219,6 +254,9 @@
 			<div id="pagination"></div>
 		</div>
 	</div>
+
+
+
 	<script>
 		btn_date.onclick = form1;
 		btn_place.onclick = form2;
@@ -252,8 +290,12 @@
 			
 			var newInput = document.createElement("input");
 			newInput.type = "text";
+
+			newInput.style ="width:250px; margin:10px 0;";
+			//newInput.id = atr;
+
 			newInput.name = atr;
-			newInput.placeholder = "친구아이디입력";
+			newInput.placeholder = "친구의 아이디를 입력해주세요.";
 			
 			var newBtn = document.createElement("input");
 			newBtn.type = "button";
@@ -564,6 +606,17 @@
 			}
 		}
 	</script>
+    </div>
+    </section>
+
+
+
+
+
+
+<!-- footer -->
+    <section class="footer25" style="position:relative; top:900px;">
+      <%@include file="../frontDesign/footer.jsp" %>
 </body>
 </html>
 

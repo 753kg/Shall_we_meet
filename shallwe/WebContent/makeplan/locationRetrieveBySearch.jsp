@@ -5,10 +5,13 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>키워드로 장소검색하고 목록으로 표출하기</title>
+<<<<<<< HEAD
 
 <%-- jQuery CDN --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<title>출발지 입력</title>
 
 <style>
 .map_wrap, .map_wrap * {
@@ -165,6 +168,42 @@
 	#placesList { border: 3px dotted blue; }\
 </style>
 
+<<<<<<< HEAD
+=======
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/animate.css">   
+    <link rel="stylesheet" href="../frontDesign/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/magnific-popup.css">
+    <link rel="stylesheet" href="../frontDesign/css/flaticon.css">
+    <link rel="stylesheet" href="../frontDesign/css/style.css">
+</head>
+
+<body>
+
+	<%@include file="../frontDesign/header.jsp" %>
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('../frontDesign/imageSource/배경이미지.png');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate mb-5 text-center">
+          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="../mainView/main.jsp">Home <i class="fa fa-chevron-right"></i></a></span> </p>
+            <img class="header-title25" src ="../frontDesign/imageSource/로그인.png"> 
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+   <section>
+   <div class="content25">
+	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+>>>>>>> refs/heads/juhee
 </head>
 <body>
 	<div class="map_wrap">
@@ -186,9 +225,14 @@
 		</div>
 	</div>
 
+<<<<<<< HEAD
 	<%-- kakao Map API --%>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script>
 	
+=======
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e4f8aeb0d5079a18f159c0c6462fa4de&libraries=services"></script>
+>>>>>>> refs/heads/juhee
 	<script>
 		// 마커를 담을 배열입니다
 		var markers = [];
@@ -441,5 +485,11 @@
 	<script>
 
 </script>
+</div>
+    </section>
+
+
+    <section class="footer25" style="position:relative; top:400px;">
+<%@include file="../frontDesign/footer.jsp" %>
 </body>
 </html>
