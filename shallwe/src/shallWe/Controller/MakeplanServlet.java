@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shallWe.Service.MemberPlanService;
 import shallWe.Service.PlanService;
 
 /**
@@ -33,7 +34,9 @@ public class MakeplanServlet extends HttpServlet {
 		int numbers = Integer.parseInt(request.getParameter("membercount"));
 		String host_date = request.getParameter("host_date");
 		String host_place = request.getParameter("host_place");
-		
+		String host_lat = request.getParameter("host_lat");
+		String host_lon = request.getParameter("host_lon");
+		System.out.println(System.currentTimeMillis());
 		String plan_id = host_id + System.currentTimeMillis();
 		
 		List<String> friend_id_list = new ArrayList<>();
@@ -45,10 +48,20 @@ public class MakeplanServlet extends HttpServlet {
 				friend_id_list.add(value);
 			}
 		}
-		
+		System.out.println("lat: "+host_lat);
+		System.out.println("lon: "+host_lon);
+		/*
 		// 무조건 plans, members_plans 입력
 		PlanService ps = new PlanService();
 		ps.insertPlan(plan_id, plan_name, host_id, numbers);
+		MemberPlanService mps = new MemberPlanService();
+		
+		for(String friend_id : friend_id_list) {
+			mps.insertMemberPlan(plan_id, friend_id, 0.0, 0.0);
+		}
+		
+		// host?????
+		//mps.insertMemberPlan(plan_id, host_id, lat, lon)
 		
 		// 날짜 선택 안했으면 (장소만 선택)
 		if(host_date.equals("")) {
@@ -76,6 +89,7 @@ public class MakeplanServlet extends HttpServlet {
 		for(String f:friend_id_list) {
 			System.out.println("friends: " + f);
 		}
+		*/
 		// host_id, plan_name, membercount --> plans
 		// host_date --> date_options
 		// host_id, friends --> members_plans

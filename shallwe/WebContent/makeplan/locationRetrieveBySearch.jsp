@@ -347,6 +347,7 @@
 			el.className = 'item';
 			
 			el.onclick = function(){
+				
 				alert('x:' + places.x + ' y:' + places.y);
 			};
 
