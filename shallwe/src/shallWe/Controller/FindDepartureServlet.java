@@ -17,7 +17,7 @@ import shallWe.Service.MemberPlanService;
 /**
  * Servlet implementation class FindDeparture
  */
-@WebServlet("/FindDeparture")
+@WebServlet("/makeplan/FindDeparture")
 public class FindDepartureServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class FindDepartureServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
-		RequestDispatcher rd = request.getRequestDispatcher("makeplan/locationRetrieveBySearch.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("SelectLocationByMember.jsp");
 		rd.forward(request, response);
 
 	}
@@ -45,9 +45,12 @@ public class FindDepartureServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberPlanService mps = new MemberPlanService();
-		double[] locationList=mps.convertToDouble(request.getParameter("location"));
-		
+		/*
+		 * MemberPlanService mps = new MemberPlanService(); double[]
+		 * locationList=mps.convertToDouble(request.getParameter("location"));
+		 */
+		System.out.println(request.getParameter("member_lat"));
+
 		//mps.insertMember(member_id,plan_id,locationList[0],locationList[1]);
 		
 

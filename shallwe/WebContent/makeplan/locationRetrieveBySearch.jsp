@@ -293,7 +293,11 @@
 					//위도경도 값 서블릿에 넘기기
 					kakao.maps.event.addListener(marker, 'click', function() {        
 						alert('marker click!');
-					    $("#location").val(placePosition);
+						console.log(placePosition);
+						$("#member_lat").val(placePosition.La);
+						$("#member_lon").val(placePosition.Ma);
+					   	$("#host_place").val(title)
+					    
 					   	
 					});
 					
@@ -434,10 +438,7 @@
 
 
 
-	<form id="aa" action="FindDeparture" method="post">
-		<input type="text" name="location" id="location" value=""> 
-		 <input type="submit" value="수정하기">
-	</form>
+
 	<script>
 
 </script>
