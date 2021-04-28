@@ -34,9 +34,11 @@ public class MakeplanServlet extends HttpServlet {
 		int numbers = Integer.parseInt(request.getParameter("membercount"));
 		String host_date = request.getParameter("host_date");
 		String host_place = request.getParameter("host_place");
+
 		String host_lat = request.getParameter("host_lat");
 		String host_lon = request.getParameter("host_lon");
 		System.out.println(System.currentTimeMillis());
+
 		String plan_id = host_id + System.currentTimeMillis();
 		
 		List<String> friend_id_list = new ArrayList<>();
@@ -48,8 +50,7 @@ public class MakeplanServlet extends HttpServlet {
 				friend_id_list.add(value);
 			}
 		}
-		System.out.println("lat: "+host_lat);
-		System.out.println("lon: "+host_lon);
+
 		/*
 		// 무조건 plans, members_plans 입력
 		PlanService ps = new PlanService();

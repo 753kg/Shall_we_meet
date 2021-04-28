@@ -17,6 +17,7 @@ public class MemberPlanService {
 		double[] locationList= new double[3];
 		
 		 String[] location = str.split(",| ");
+		 
 		  
 		  for(int i=0; i<location.length; i++) {
 			  String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s\'.']";
@@ -38,9 +39,11 @@ public class MemberPlanService {
 		return locationList;
 	}
 	
-	public int insertMemberLocation(Double lat,Double lon) {
-		
-		return mpdao.insertMemberLocation(lat, lon);
+
+	public int insertMemberLocation(String member_id,String plan_id ,double lat,double lon) {
+		MemberPlanDAO mpdao = new MemberPlanDAO();
+		return mpdao.insertMemberToMemberPlan(member_id,plan_id,lat, lon);
+
 	}
 	
 	public int insertMemberPlan(String plan_id, String member_id, double lat, double lon) {

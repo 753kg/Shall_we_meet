@@ -308,6 +308,7 @@
 				url:"locationRetrieveBySearch.jsp",
 				type:"get",
 				success:function(responsedata){
+					
 					$("#ajaxTest").html(responsedata);
 					$("#ajaxData").html(`<input type="hidden" name="lat" value=""> `);
 				},
