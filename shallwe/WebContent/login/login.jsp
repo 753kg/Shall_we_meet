@@ -18,6 +18,7 @@
 
 <body>
 
+<<<<<<< HEAD
 	<div class="wrap">
 			<div class="container">
 				<div class="row">
@@ -60,6 +61,9 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
+=======
+	<%@include file="../frontDesign/header.jsp" %>
+>>>>>>> refs/heads/main
     
     <section class="hero-wrap hero-wrap-2" style="background-image: url('../frontDesign/imageSource/배경이미지.png');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -91,6 +95,7 @@
 
 
     <section class="footer25" style="position:relative; top:400px;">
+<<<<<<< HEAD
       <div class="container-fluid px-0 py-5 bg-black">
       	<div class="container">
       		<div class="row">
@@ -127,5 +132,8 @@
   <script src="../frontDesign/js/jquery.animateNumber.min.js"></script>
   <script src="../frontDesign/js/scrollax.min.js"></script>
   <script src="../frontDesign/js/main.js"></script>
+=======
+      <%@include file="../frontDesign/footer.jsp" %>
+>>>>>>> refs/heads/main
 </body>
 </html>

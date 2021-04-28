@@ -17,6 +17,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
 	<div class="wrap">
 			<div class="container">
@@ -33,7 +34,35 @@
 					</div>
 				</div>
 			</div>
+=======
+	<%@include file="../frontDesign/header.jsp" %>
+	
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('../frontDesign/imageSource/배경이미지.png');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate mb-5 text-center">
+          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="../mainView/main.jsp">Home <i class="fa fa-chevron-right"></i></a></span> </p>
+            <img class="header-title25" src ="../frontDesign/imageSource/회원가입.png"> 
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+   <section>
+   
+   <div class="content25">
+   
+	<form action="Register" method="post" class="billing-form" style="width:400px;">
+		<div id="register25">
+		<div class="form-group">
+			<label for="register_id">아이디</label>
+			<input type="text" id="register_id" name="register_id"  >
+>>>>>>> refs/heads/main
 		</div>
+<<<<<<< HEAD
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
@@ -83,12 +112,20 @@
 		<div class="form-group">
 			<label for="register_id">아이디</label>
 			<input type="text" id="register_id" name="register_id"  >
+=======
+		<div class="form-group">
+			<label for="register_pw">비밀번호</label>
+			<input type="password" id="register_pw" name="register_pw" >
+>>>>>>> refs/heads/main
 		</div>
 		<div class="form-group">
+<<<<<<< HEAD
 			<label for="register_pw">비밀번호</label>
 			<input type="password" id="register_pw" name="register_pw" >
 		</div>
 		<div class="form-group">
+=======
+>>>>>>> refs/heads/main
 			<label for="register_name">이름</label>
 			<input type="text" id="register_name" name="register_name">
 		</div>
@@ -113,6 +150,7 @@
 </div>
     </section>
 
+<<<<<<< HEAD
 
     <section class="footer25" style="position:relative; top:800px;">
       <div class="container-fluid px-0 py-5 bg-black">
@@ -151,5 +189,9 @@
   <script src="../frontDesign/js/jquery.animateNumber.min.js"></script>
   <script src="../frontDesign/js/scrollax.min.js"></script>
   <script src="../frontDesign/js/main.js"></script>
+=======
+	<section class="footer25" style="position:relative; top:800px;">
+	<%@include file="../frontDesign/footer.jsp" %>
+>>>>>>> refs/heads/main
 </body>
 </html>

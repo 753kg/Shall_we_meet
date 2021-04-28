@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import shallWe.DAO.MemberDAO;
+import shallWe.Service.MemberService;
 import shallWe.VO.MemberVO;
 
 /**
@@ -22,8 +23,8 @@ public class LoginServlet extends HttpServlet {
 		String memberid = request.getParameter("memberid");
 		String memberpw = request.getParameter("memberpw");
 		
-		MemberDAO dao = new MemberDAO();
-		MemberVO m = dao.loginChk(memberid, memberpw);
+		MemberService service = new MemberService();
+		MemberVO m = service.loginChk(memberid, memberpw);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("memberid", m.getMember_id());

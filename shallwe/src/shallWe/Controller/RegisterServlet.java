@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shallWe.DAO.MemberDAO;
+import shallWe.Service.MemberService;
 import shallWe.VO.MemberVO;
 
 /**
@@ -33,8 +34,8 @@ public class RegisterServlet extends HttpServlet {
 		new_mem.setPhone_number(register_phone);
 		new_mem.setSecurity(register_security);
 		
-		MemberDAO dao = new MemberDAO();
-		int result = dao.insertMember(new_mem);
+		MemberService service = new MemberService();
+		int result = service.insertMember(new_mem);
 		String message = "회원가입 성공";
 		if(result == 0) {
 			message = "회원가입 실패";
