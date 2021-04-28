@@ -15,16 +15,7 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-function() {
-	
-	$(".plans").click(function() {
-		
-		
-	})
-}
 
-</script>
 </head>
 <body>
 	<c:forEach var="plan" items="${planlist }">
@@ -44,6 +35,7 @@ function() {
 	</form>
 	
 	<script type="text/javascript">
+		
 		btn_makePlan.onclick = toMakePlanPage;
 		
 		hotplaces = ['홍대', '이태원', '잠실'];
