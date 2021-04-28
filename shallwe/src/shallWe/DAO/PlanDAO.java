@@ -77,7 +77,7 @@ public class PlanDAO {
 
 	public PlanVO makePlan(ResultSet rs) throws SQLException {
 		PlanVO p = new PlanVO();
-		p.setPlan_id(rs.getInt("plan_id"));
+		p.setPlan_id(rs.getString("plan_id"));
 		p.setFixed_date(rs.getDate("fixed_date"));
 		p.setHotplace_name(rs.getString("hotplace_name"));
 		p.setPlan_name(rs.getString("plan_name"));
