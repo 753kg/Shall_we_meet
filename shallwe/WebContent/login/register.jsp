@@ -28,7 +28,7 @@
 					</div>
 					<div class="col-md-6 d-flex justify-content-md-end">
 		        <div class="reg">
-		        	<p class="mb-0"><a href="#" class="mr-2">Sign Up</a> <a href="../login/login.jsp">LogIn</a></p>
+		        	<p class="mb-0"><a href="../login/register.jsp" class="mr-2">Sign Up</a> <a href="../login/login.jsp">LogIn</a></p>
 		        </div>
 					</div>
 				</div>
@@ -75,17 +75,18 @@
 
 
    <section>
-   <div id="register25">
+   
    <div class="content25">
    
-	<form action="Register" method="post" class="billing-form">
+	<form action="Register" method="post" class="billing-form" style="width:400px;">
+		<div id="register25">
 		<div class="form-group">
 			<label for="register_id">아이디</label>
-			<input type="text" id="register_id" name="register_id">
+			<input type="text" id="register_id" name="register_id"  >
 		</div>
 		<div class="form-group">
 			<label for="register_pw">비밀번호</label>
-			<input type="password" id="register_pw" name="register_pw">
+			<input type="password" id="register_pw" name="register_pw" >
 		</div>
 		<div class="form-group">
 			<label for="register_name">이름</label>
@@ -93,27 +94,27 @@
 		</div>
 		<div class="form-group">
 			<label for="register_email">이메일</label>
-			<input type="email" id="register_email" name="register_email">
+			<input type="email" id="register_email" name="register_email" >
 		</div>
 		<div class="form-group">
 			<label for="register_phone">전화번호</label>
 			<input type="text" id="register_phone" name="register_phone">
 		</div>
 		<div class="form-group">
-			<label for="register_security">본인확인용 질문</label>
-			<p>나의 보물 1호는?</p>
+			<label for="register_security" style="float:right; font-size:14px;">본인확인용 질문</label>
+			<span style="float:left;">나의 보물 1호는?</span>
 			<input type="text" id="register_security" name="register_security" placeholder="답">
 		</div>
 		<div class="form-group">
-			<input type="submit" value="가입하기" id="btn_submit" style="width:300px; background-color: black; color:white;">
+			<input type="submit" value="가입하기" id="btn_submit">
 		</div>
+	</div>
 	</form>
-</div>
 </div>
     </section>
 
 
-    <section class="footer25" style="position:relative; top:700px;">
+    <section class="footer25" style="position:relative; top:800px;">
       <div class="container-fluid px-0 py-5 bg-black">
       	<div class="container">
       		<div class="row">

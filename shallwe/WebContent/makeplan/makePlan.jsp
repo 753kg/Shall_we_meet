@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-md-6 d-flex justify-content-md-end">
 		        <div class="reg">
-		        	<p class="mb-0"><a href="#" class="mr-2">Sign Up</a> <a href="../login/login.jsp">LogIn</a></p>
+		        	<p class="mb-0"><a href="../login/register.jsp" class="mr-2">Sign Up</a> <a href="../login/login.jsp">LogIn</a></p>
 		        </div>
 					</div>
 				</div>

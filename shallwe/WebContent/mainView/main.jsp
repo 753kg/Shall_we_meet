@@ -31,7 +31,7 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						
 		<div class="reg">
-		    	<p class="mb-0"><a href="#" class="mr-2">Sign Up</a> 
+		    	<p class="mb-0"><a href="../login/register.jsp" class="mr-2">Sign Up</a> 
 		        	<% String memberid = (String) session.getAttribute("memberid"); %>
 					<% if(memberid == null) {%>
 						<a href="../login/login.jsp">LogIn</a>
