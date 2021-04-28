@@ -147,7 +147,19 @@
 	margin:0;
 }
 
+/*makePlan.jsp*/
+#ajaxTest{
+	position:absolute;
+	top:1400px;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	width: 1100px;
+}
 
+/*SelectLocationByMember*/
+#select-place-title{
+	border:solid black 1px;
+}
 
 
 

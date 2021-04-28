@@ -67,7 +67,7 @@
               </div>
             </li>
 	          <li class="nav-item"><a href="#" class="nav-link">날짜 입력하기</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">출발지 입력하기</a></li>
+	          <li class="nav-item"><a href="../makeplan/SelectLocationByMember.jsp" class="nav-link">출발지 입력하기</a></li>
 	        </ul>
 	      </div>
 	    </div>
