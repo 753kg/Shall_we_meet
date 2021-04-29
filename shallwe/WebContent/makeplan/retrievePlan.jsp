@@ -70,9 +70,6 @@
       function goToSelectDatebyMember(planid) {
          location.href ="../masterDateList?plan_id="+planid;
       }
-      function goToCalculator(planid) {
-         location.href = "calculator?plan_id="+planid;
-      }
       
    </script>
 </body>

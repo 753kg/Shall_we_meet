@@ -63,8 +63,8 @@ function available(date) {
     }
 }
 
-function call(){
-	location.href = "memberSelectDate?dates="+marr.toString()+"&plan_id=mem21619680675631";
+function call(planid){
+	location.href = "memberSelectDate?dates="+marr.toString()+"&plan_id=" + planid;
 }
 </script>
 <body>
@@ -82,7 +82,7 @@ function call(){
 			</span>
 		 </span>
 	</div>
-	 	<button onclick="call();">확인</button> 
+	 	<button onclick="call('${plan_id}');">확인</button> 
 </body>
 <script type="text/javascript">
 
