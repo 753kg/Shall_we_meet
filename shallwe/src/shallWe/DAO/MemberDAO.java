@@ -9,7 +9,7 @@ import shallWe.Util.DBUtil;
 import shallWe.VO.MemberVO;
 
 public class MemberDAO {
-	
+
 	// 회원가입
 	public int insertMember(MemberVO m) {
 		int result = 0;
