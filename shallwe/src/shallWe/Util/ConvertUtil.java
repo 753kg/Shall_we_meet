@@ -1,3 +1,4 @@
+
 package shallWe.Util;
 
 import java.sql.Date;
@@ -5,15 +6,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class ConvertUtil {
-	public static int convertInt(String param) {
+	public static  int covertInt(String param) {
 		return Integer.parseInt(param);
 	}
-	public static double convertDouble(String param) {
+	public static double covertDouble(String param) {
 		return Double.parseDouble(param);
 	}
-	public static Date convertDate(String param) {
-		return Date.valueOf(param);
-		/*
+	public static Date covertDate(String param) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		Date d=null;
 		try {
@@ -23,6 +22,10 @@ public class ConvertUtil {
 			e.printStackTrace();
 		}
 		return d;
-		*/
 	}
+	public static Date covertDate2(String param) {
+		return Date.valueOf(param);
+
+	}
+	
 }

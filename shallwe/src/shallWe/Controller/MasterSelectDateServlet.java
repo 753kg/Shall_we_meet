@@ -1,3 +1,4 @@
+
 package shallWe.Controller;
 
 import java.io.IOException;
@@ -21,13 +22,14 @@ import shallWe.Service.DateSelect;
 import shallWe.Util.ConvertUtil;
 import shallWe.VO.DateOptionVO;
 
-@WebServlet("/date/masterSelectDate")
+@WebServlet("/masterSelectDate")
 public class MasterSelectDateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public MasterSelectDateServlet() {
     	super();
     }
+    //방장이 선택한 여러 날짜들을 DB로 넘기는 곳
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,22 +39,10 @@ public class MasterSelectDateServlet extends HttpServlet {
     	System.out.println(hostdates);
     	DateSelect service = new DateSelect();
 
-    	// 호스트데이트 갯수만큼 date_options에 insert된다.
-    	//request.setAttribute("hlist", service.convertArrayInsert(1, hostdates));
+    	request.setAttribute("hlist", service.convertArrayInsertMaDate("1", hostdates));
     	
-    	RequestDispatcher rd = request.getRequestDispatcher("successPage.jsp");
+    	RequestDispatcher rd = request.getRequestDispatcher("date/successPage.jsp");
     	rd.forward(request, response);
     
     	}
     }
-
-//	String obj = request.getParameter("plan_id");
-//	if(obj == null) throw new ServletException("약속이 없습니다.");
-	
-//	int planid = Integer.parseInt(obj);
-//	DateSelect service = new DateSelect();
-//	request.setAttribute("plan_id", service.selectMemIdplanId(planid));
-	
-//	RequestDispatcher rd = request.getRequestDispatcher("masterSelectDate.jsp");
-//	rd.forward(request, response);
-

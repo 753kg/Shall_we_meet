@@ -1,15 +1,15 @@
 package shallWe.VO;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class DateOptionVO {
 
 	String plan_id;
-	Date host_date;
+	String host_date;
 	
 	public DateOptionVO() {}
 
-	public DateOptionVO(String plan_id, Date host_date) {
+	public DateOptionVO(String plan_id, String host_date) {
 		super();
 		this.plan_id = plan_id;
 		this.host_date = host_date;
@@ -23,11 +23,11 @@ public class DateOptionVO {
 		this.plan_id = plan_id;
 	}
 
-	public Date getHost_date() {
+	public String getHost_date() {
 		return host_date;
 	}
 
-	public void setHost_date(Date host_date) {
+	public void setHost_date(String host_date) {
 		this.host_date = host_date;
 	}
 
