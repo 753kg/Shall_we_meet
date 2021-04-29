@@ -131,13 +131,14 @@ public class DateDAO {
 			List<DateOptionVO> list = new ArrayList<DateOptionVO>();
 			String sql = "select host_date "
 					+ "from date_options "
-					+ "where plan_id = "+planid;
+					+ "where plan_id = ?";
 			
 			Connection conn = DBUtil.getConnection();
 			PreparedStatement st = null;
 			ResultSet rs = null;
 			try {
 				st = conn.prepareStatement(sql);
+				st.setString(1, planid);
 				rs = st.executeQuery();
 				
 				while(rs.next()) {

@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.SendResult;
 
 import shallWe.Service.DateSelect;
 import shallWe.Util.ConvertUtil;
@@ -30,20 +32,24 @@ public class MemberDateSelectServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
     	
     	String memberdates = request.getParameter("dates");
-    	System.out.println(memberdates);
-    	DateSelect service = new DateSelect();
+    	String plan_id = request.getParameter("plan_id");
+    	HttpSession session = request.getSession();
+    	String member_id = (String) session.getAttribute("memberid");
+    	System.out.println("=================================");
+		System.out.println(plan_id);
+		System.out.println(member_id);
+		System.out.println(memberdates);
+		System.out.println("=================================");
+		DateSelect service = new DateSelect();
 
-    	try {
-			request.setAttribute("mlist", service.updateMemberDates("1", "mem1", memberdates));
-		
-			RequestDispatcher rd = request.getRequestDispatcher("date/successPage.jsp");
-	    	rd.forward(request, response);
-	   
-    	} catch (SQLException e) {
+		try {
+			request.setAttribute("mlist", service.updateMemberDates(plan_id, member_id, memberdates));
+			response.sendRedirect("makeplan/PlanSelectServlet");
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-    	
-    
-    	}
+
 	}
+}
 	

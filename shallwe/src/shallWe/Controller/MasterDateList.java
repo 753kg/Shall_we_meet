@@ -23,10 +23,13 @@ public class MasterDateList extends HttpServlet {
     }
     //멤버가 방장이 선택한 날짜들 중에서 고르는 페이지로 넘기는곳
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String plan_id = request.getParameter("plan_id");
+		System.out.println(plan_id);
 		DateSelect service = new DateSelect();
 		try {
-			List<DateOptionVO> dolist = service.selectHostDates("1");
+			List<DateOptionVO> dolist = service.selectHostDates(plan_id);
 			request.setAttribute("hdall", dolist);
+			request.setAttribute("plan_id", plan_id);
 			RequestDispatcher rd = 
 					request.getRequestDispatcher("date/masterdates_retrieve.jsp");
 			rd.forward(request, response);

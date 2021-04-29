@@ -39,8 +39,6 @@
 		</div>
 		<%-- 장소 버튼 누르면 사라짐 --%>
 		<div id="select_date">
-			<label for="host_date"></label>
-			<input type="date" id="host_date" name="host_date" placeholder="날짜선택">
 		</div>
 		<%-- 날짜 버튼 누르면 사라짐 --%>
 		<div id="select_place">
@@ -63,73 +61,113 @@
  </form>
 	<div id ="ajaxTest"></div>
 	<script>
-		var arr =[];
-		btn_date.onclick = form1;
-		btn_place.onclick = form2;
-		btn_datePlace.onclick = form3;
-		btn_invite.onclick = inviteFriend;
-		btn_submit.onclick = submitForm;
+		var arr = [];
 		
-		function form1(){
+		btn_date.click();
+		
+		$("#btn_date").on("click", function() {
 			document.getElementById("select_date").style.display = "block";
 			document.getElementById("select_place").style.display = "none";
-		}
+			document.getElementById("ajaxTest").style.display = "none";
+			
+			$.ajax({
+				url : "../date/masterSelectDate.jsp",
+				type : "get",
+				success : function(responsedata) {
+					$("#select_date").html(responsedata);
+				},
+				error : function() {
+				}
+			});
+		});
 		
-		function form2(){
+		$("#btn_place").on("click", function() {
 			document.getElementById("select_date").style.display = "none";
 			document.getElementById("select_place").style.display = "block";
-		}
+			document.getElementById("ajaxTest").style.display = "block";
+			
+			$.ajax({
+				url : "locationRetrieveBySearch.jsp",
+				type : "get",
+				success : function(responsedata) {
+					$("#ajaxTest").html(responsedata);
+				},
+				error : function() {
+				}
+			});
+		});
 		
-		function form3(){
+		$("#btn_datePlace").on("click", function() {
 			document.getElementById("select_date").style.display = "block";
 			document.getElementById("select_place").style.display = "block";
-		}
-		
+			document.getElementById("ajaxTest").style.display = "block";
+
+			$.ajax({
+				url : "locationRetrieveBySearch.jsp",
+				type : "get",
+				success : function(responsedata) {
+					$("#ajaxTest").html(responsedata);
+				},
+				error : function() {
+				}
+			});
+
+			$.ajax({
+				url : "../date/masterSelectDate.jsp",
+				type : "get",
+				success : function(responsedata) {
+					$("#select_date").html(responsedata);
+				},
+				error : function() {
+				}
+			});
+		});
+
+		btn_invite.onclick = inviteFriend;
+		btn_submit.onclick = submitForm;
+
 		var flist = document.getElementById("friend_list");
 		var count = 1;
 		var i = 1;
-		function inviteFriend(){
+		function inviteFriend() {
 			var atr = "friend" + i;
-			
+
 			var newDIV = document.createElement("div");
 			newDIV.className = atr;
-			
+
 			var newInput = document.createElement("input");
 			newInput.type = "text";
 			newInput.name = atr;
 			newInput.placeholder = "친구아이디입력";
-			newInput.onblur = idCheck;
-			
+			newInput.onkeyup = idCheck;
+
 			var newBtn = document.createElement("input");
 			newBtn.type = "button";
-			//newBtn.id = "btn_delete" + i;
 			newBtn.value = "삭제";
 			newBtn.onclick = deleteFriend;
-			
+
 			var newText = document.createElement("div");
 			newText.className = "id_check";
-			$(newText).text("아이디체크칸22");
-						
+
 			newDIV.appendChild(newInput);
 			newDIV.appendChild(newBtn);
 			newDIV.appendChild(newText);
-			
+
 			flist.appendChild(newDIV);
-			
-			
+
 			i = i + 1;
 			count = count + 1;
 			console.log(count);
 		}
-		
-		function deleteFriend(){
+
+		function deleteFriend() {
 			var parent = this.parentNode;
 			parent.parentNode.removeChild(parent);
 			count = count - 1;
 			console.log(count);
 		}
-		
-		function submitForm(){
+
+		function submitForm() {
 			var cdiv = document.createElement("div");
 			var cinput = document.createElement("input");
 			cinput.type = "hidden";
@@ -137,103 +175,47 @@
 			cinput.value = count;
 			cdiv.appendChild(cinput);
 			makePlanForm.appendChild(cdiv);
-			
+
 			//console.log(arr === null);
 			//console.log(arr.toString());
 			host_dates.value = arr.toString();
-			
+
 			makePlanForm.submit();
 		}
-		
-		$(function() {
-		$("#btn_place").on("click", function() {
-			$.ajax({
-				url:"locationRetrieveBySearch.jsp",
-				type:"get",
-				success:function(responsedata){
-					$("#ajaxTest").html(responsedata);
-				},
-				error:function(){}
-			}); 
-			});
-		})
-		
-		$(function() {
-		$("#btn_date").on("click", function() {
-			$.ajax({
-				url:"../date/masterSelectDate.jsp",
-				type:"get",
-				success:function(responsedata){
-					$("#select_date").html(responsedata);
-				},
-				error:function(){}
-			}); 
-			});
-		})
-		
-		$(function() {
-		$("#btn_datePlace").on("click", function() {
-			$.ajax({
-				url:"locationRetrieveBySearch.jsp",
-				type:"get",
-				success:function(responsedata){
-					$("#ajaxTest").html(responsedata);
-				},
-				error:function(){}
-			}); 
-		
-			$.ajax({
-				url:"../date/masterSelectDate.jsp",
-				type:"get",
-				success:function(responsedata){
-					$("#select_date").html(responsedata);
-				},
-				error:function(){}
-			}); 
-			});
-		})
-		
+
 		function idCheck() {
 			var register_id = $(this).val();
 			var input = $(this);
 			console.log("this: " + register_id);
 			console.log($(this).siblings(".id_check").text());
-			
+
 			$.ajax({
-				// 아이디 체크하는 서블릿??
-				url : '../login/IDCheck?register_id=' + register_id,
-				type : 'get',
-				success : function(data) {
-					console.log("1 = 중복o / 0 = 중복x : " + data);
+						// 아이디 체크하는 서블릿
+						url : '../login/IDCheck?register_id=' + register_id,
+						type : 'get',
+						success : function(data) {
+							console.log("1 = 중복o / 0 = 중복x : " + data);
 
-					if (data == 1) {
-						// 1 : 아이디가 중복되는 문구
-						console.log("초대가능");
-						$(input).siblings(".id_check").text("초대가능");
-						$(input).siblings(".id_check").css("color", "green");
-						$("#btn_submit").attr("disabled", false);
-					} else {
-						
-						if(register_id == ""){
-							console.log("친구아이디를 입력하세요");
-							$(input).siblings(".id_check").text("친구아이디를 입력하세요");
-							$(input).siblings(".id_check").css("color", "red");
-							$("#btn_submit").attr("disabled", true);
-						} else {
-							console.log("존재하지 않는 아이디입니다.");
-							$(input).siblings(".id_check").text("존재하지 않는 아이디입니다.");
-							$(input).siblings(".id_check").css("color", "red");
-							$("#btn_submit").attr("disabled", true);
+							if (data == 1) { // 1 : 아이디가 존재하면
+								$(input).siblings(".id_check").text("초대가능");
+								$(input).siblings(".id_check").css("color", "green");
+							} else {
+
+								if (register_id == "") {
+									$(input).siblings(".id_check").text("친구아이디를 입력하세요");
+									$(input).siblings(".id_check").css("color","red");
+								} else {
+									$(input).siblings(".id_check").text("존재하지 않는 아이디입니다.");
+									$(input).siblings(".id_check").css("color","red");
+								}
+							}
+						},
+						error : function() {
+							console.log("실패");
 						}
-					}
-				},
-				error : function() {
-					console.log("실패");
-				}
-			});
-			
-		}
+					});
 
+		}
 	</script>
 </body>
 </html>

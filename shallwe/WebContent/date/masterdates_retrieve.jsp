@@ -64,7 +64,7 @@ function available(date) {
 }
 
 function call(){
-	location.href = "memberSelectDate?dates="+marr.toString();
+	location.href = "memberSelectDate?dates="+marr.toString()+"&plan_id=mem21619680675631";
 }
 </script>
 <body>
