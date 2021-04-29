@@ -1,6 +1,8 @@
 package shallWe.Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,12 +27,21 @@ public class LoginServlet extends HttpServlet {
 		
 		MemberService service = new MemberService();
 		MemberVO m = service.loginChk(memberid, memberpw);
+		PrintWriter out = response.getWriter();
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("memberid", m.getMember_id());
-		session.setAttribute("membername", m.getName());
 		
-		response.sendRedirect("../mainView/main.jsp");
+		if(m == null) {
+			out.print(0);	// 일치하는 회원이 없음
+		}
+		else {
+			HttpSession session = request.getSession();
+			session.setAttribute("memberid", m.getMember_id());
+			session.setAttribute("membername", m.getName());
+			out.print(1);
+			
+			//response.sendRedirect("../mainView/main.jsp");
+		}
+		
 	}
 
 }

@@ -98,15 +98,22 @@
 			newInput.type = "text";
 			newInput.name = atr;
 			newInput.placeholder = "친구아이디입력";
+			newInput.onblur = idCheck;
 			
 			var newBtn = document.createElement("input");
 			newBtn.type = "button";
 			//newBtn.id = "btn_delete" + i;
 			newBtn.value = "삭제";
 			newBtn.onclick = deleteFriend;
+			
+			var newText = document.createElement("div");
+			newText.className = "id_check";
+			$(newText).text("아이디체크칸22");
 						
 			newDIV.appendChild(newInput);
 			newDIV.appendChild(newBtn);
+			newDIV.appendChild(newText);
+			
 			flist.appendChild(newDIV);
 			
 			
@@ -185,6 +192,47 @@
 			}); 
 			});
 		})
+		
+		function idCheck() {
+			var register_id = $(this).val();
+			var input = $(this);
+			console.log("this: " + register_id);
+			console.log($(this).siblings(".id_check").text());
+			
+			$.ajax({
+				// 아이디 체크하는 서블릿??
+				url : '../login/IDCheck?register_id=' + register_id,
+				type : 'get',
+				success : function(data) {
+					console.log("1 = 중복o / 0 = 중복x : " + data);
+
+					if (data == 1) {
+						// 1 : 아이디가 중복되는 문구
+						console.log("초대가능");
+						$(input).siblings(".id_check").text("초대가능");
+						$(input).siblings(".id_check").css("color", "green");
+						$("#btn_submit").attr("disabled", false);
+					} else {
+						
+						if(register_id == ""){
+							console.log("친구아이디를 입력하세요");
+							$(input).siblings(".id_check").text("친구아이디를 입력하세요");
+							$(input).siblings(".id_check").css("color", "red");
+							$("#btn_submit").attr("disabled", true);
+						} else {
+							console.log("존재하지 않는 아이디입니다.");
+							$(input).siblings(".id_check").text("존재하지 않는 아이디입니다.");
+							$(input).siblings(".id_check").css("color", "red");
+							$("#btn_submit").attr("disabled", true);
+						}
+					}
+				},
+				error : function() {
+					console.log("실패");
+				}
+			});
+			
+		}
 
 	</script>
 </body>

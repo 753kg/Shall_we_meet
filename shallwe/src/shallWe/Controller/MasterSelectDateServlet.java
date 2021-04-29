@@ -38,7 +38,7 @@ public class MasterSelectDateServlet extends HttpServlet {
     	DateSelect service = new DateSelect();
 
     	// 호스트데이트 갯수만큼 date_options에 insert된다.
-    	request.setAttribute("hlist", service.convertArrayInsert(1, hostdates));
+    	//request.setAttribute("hlist", service.convertArrayInsert(1, hostdates));
     	
     	RequestDispatcher rd = request.getRequestDispatcher("successPage.jsp");
     	rd.forward(request, response);
