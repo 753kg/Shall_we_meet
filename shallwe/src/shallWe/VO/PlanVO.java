@@ -3,8 +3,8 @@ package shallWe.VO;
 import java.sql.Date;
 
 public class PlanVO {
-	int plan_id;
-	Date fixed_date;
+	String plan_id;
+	String fixed_date;
 	String hotplace_name;
 	String plan_name;
 	String host_id;
@@ -12,7 +12,7 @@ public class PlanVO {
 	
 	public PlanVO() {}
 
-	public PlanVO(int plan_id, Date fixed_date, String hotplace_name, String plan_name, String host_id, int numbers) {
+	public PlanVO(String plan_id, String fixed_date, String hotplace_name, String plan_name, String host_id, int numbers) {
 		super();
 		this.plan_id = plan_id;
 		this.fixed_date = fixed_date;
@@ -22,19 +22,19 @@ public class PlanVO {
 		this.numbers = numbers;
 	}
 
-	public int getPlan_id() {
+	public String getPlan_id() {
 		return plan_id;
 	}
 
-	public void setPlan_id(int plan_id) {
+	public void setPlan_id(String plan_id) {
 		this.plan_id = plan_id;
 	}
 
-	public Date getFixed_date() {
+	public String getFixed_date() {
 		return fixed_date;
 	}
 
-	public void setFixed_date(Date fixed_date) {
+	public void setFixed_date(String fixed_date) {
 		this.fixed_date = fixed_date;
 	}
 

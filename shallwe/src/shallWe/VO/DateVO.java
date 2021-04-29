@@ -3,16 +3,15 @@ package shallWe.VO;
 import java.sql.Date;
 
 public class DateVO {
+	String plan_id;
 	String member_id;
-	int plan_id;
-	Date select_date;
-	
+	String select_date;
+
 	public DateVO() {}
 
-	public DateVO(String member_id, int plan_id, Date select_date) {
-		super();
-		this.member_id = member_id;
+	public DateVO(String plan_id, String member_id, String select_date) {
 		this.plan_id = plan_id;
+		this.member_id = member_id;
 		this.select_date = select_date;
 	}
 
@@ -24,19 +23,19 @@ public class DateVO {
 		this.member_id = member_id;
 	}
 
-	public int getPlan_id() {
+	public String getPlan_id() {
 		return plan_id;
 	}
 
-	public void setPlan_id(int plan_id) {
+	public void setPlan_id(String plan_id) {
 		this.plan_id = plan_id;
 	}
 
-	public Date getSelect_date() {
+	public String getSelect_date() {
 		return select_date;
 	}
 
-	public void setSelect_date(Date select_date) {
+	public void setSelect_date(String select_date) {
 		this.select_date = select_date;
 	}
 
