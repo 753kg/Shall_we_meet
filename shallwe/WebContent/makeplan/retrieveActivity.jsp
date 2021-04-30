@@ -11,9 +11,6 @@
 </head>
 <body>
 	<h1>${location_name }의 액티비티 조회 페이지</h1>
-	<div id="user_info">
-	<p>~님이 홍대까지 거리는 OOkm입니다</p>
-	</div>
 	<button id="btn_restaurants">식당</button>
 	<button id="btn_cafes">카페</button>
 	<button id="btn_activities">액티비티</button>

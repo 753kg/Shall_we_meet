@@ -17,6 +17,9 @@
 	<h1>만날 장소 추천!</h1>
 
 	<div id="map" style="width: 100%; height: 350px;"></div>
+	<div id="user_info">
+	<p>~님이 홍대까지 거리는 OOkm입니다</p>
+	</div>
 
 	<button id="btn_restaurants">식당</button>
 	<button id="btn_cafes">카페</button>
