@@ -9,29 +9,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+<%--유연 --%>
+	<!-- <script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script> -->
+	<%--채연 --%>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70"></script>
 </head>
 <body>
 	<h1>만날 장소 추천!</h1>
 
 	<div id="map" style="width: 100%; height: 350px;"></div>
 	<div id="memberinfo">
-		<h5>${name }님의${hotplace_name }까지의 거리는 KM입니다</h5>
+	<h5>ㅇㅇ님의 ㅇㅇ까지의 거리는 ㅇㅇKM입니다</h5>
 	</div>
 
-	<button id="btn_restaurants">식당</button>
-	<button id="btn_cafes">카페</button>
-	<button id="btn_activities">액티비티</button>
 
-	<div id="activities"></div>
+	<hr>
+  <div id="hlist"></div>
+	<div id="activity_view"></div>
 
 
 
 
 	<script>	
 	
+
 		/* for(var vs=0;vs<3;vs++){
 			console.log(hotlist[hotlist].lat)
 		} */
@@ -61,7 +67,7 @@
 		// 마커 이미지의 이미지 주소입니다
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-		
+		for (var i = 0; i < positions.length; i++) {
 
 			// 마커 이미지의 이미지 크기 입니다
 			var imageSize = new kakao.maps.Size(24, 35);
@@ -69,8 +75,6 @@
 			// 마커 이미지를 생성합니다    
 			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-			
-			
 			// 마커를 생성합니다
 			var marker1 = new kakao.maps.Marker({
 				map : map, // 마커를 표시할 지도
@@ -79,7 +83,6 @@
 				image : markerImage
 			// 마커 이미지 
 			});
-			
 			var marker2 = new kakao.maps.Marker({
 				map : map, // 마커를 표시할 지도
 				position : positions[1].latlng, // 마커를 표시할 위치
@@ -94,16 +97,7 @@
 				image : markerImage
 			// 마커 이미지 
 			});
-			
-			var markers =[marker1,marker2,marker3];
-			
-			for(i=0;i<markers.length;i++){
-			
-				kakao.maps.event.addListener(markers[i], 'click', function() {        
-               			alert("1");
-                
-         		});
-			}
+
 			var iwContent1 = '<div style="padding:5px;"><a>${hotplaceList[0].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			iwPosition1 = new kakao.maps.LatLng(${hotplaceList[0].lat}, ${hotplaceList[0].lon}); //인포윈도우 표시 위치입니다
 			
@@ -134,49 +128,39 @@
 			infowindow1.open(map, marker1);
 			infowindow2.open(map, marker2);
 			infowindow3.open(map, marker3);
-		
+		}
 	</script>
 
 
 	<script>
-	btn_restaurants.onclick = function(){
-		activities.innerHTML = `
-			<c:forEach var="r" items="${rlist }">
-			<div class="list">
-				<p><img src="${r.image }"></p>
-				<p>${r.restaurant_name }</p>
-				<p>${r.main_food }</p>
-				<p>${r.full_address }</p>
-				<p>${r.likes }</p>
-			</div>
-		</c:forEach>
-		`;
-	};
+	hotplaces = ['홍대', '이태원', '잠실'];
+    makeBtn(hotplaces);
+    function makeBtn(hosplaces){
+    	
+        for(let i=0; i<hotplaces.length; i++){
+             var atr = hotplaces[i];
+             var newBtn = document.createElement("input");
+             newBtn.type = "button";
+             newBtn.value = atr;
+             newBtn.name = "location_name";
+             newBtn.onclick = function(){
+            	 $.ajax({
+            			url : "AcivitySelect?location_name=" + hotplaces[i],
+            			type : "get",
+            			success : function(responsedata) {
+            				
+            				$("#activity_view").html(responsedata);
+            			},
+            			error : function() {
+            				console.log("에이젝스 ㅠㅠ")
+            			}
+            		});
+            	 //location.href = "AcivitySelect?location_name=홍대";
+             };
+             hlist.appendChild(newBtn);
+          }
+       }
 	
-	btn_cafes.onclick = function(){
-		activities.innerHTML = `
-			<c:forEach var="c" items="${clist }">
-			<div class="list">
-				<p><img src="${c.image }"></p>
-				<p>${c.cafe_name }</p>
-				<p>${c.main_food }</p>
-				<p>${c.full_address }</p>
-				<p>${c.likes }</p>
-			</div>
-			</c:forEach>
-		`;
-	};
-	
-	btn_activities.onclick = function(){
-		activities.innerHTML = `
-			<c:forEach var="a" items="${alist }">
-			<div class="list">
-				<p>${a.activity_name }</p>
-				<p>${a.main_activity }</p>
-			</div>
-		</c:forEach>
-		`;
-	};
 	</script>
 </body>
 </html>
