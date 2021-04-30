@@ -17,9 +17,10 @@
 	<button id="btn_cafes">카페</button>
 	<button id="btn_activities">액티비티</button>
 	
-<script type="text/javascript">
+<<<<<<< HEAD
 		/* for(var vs=0;vs<3;vs++){
-			console.log(hotlist[hotlist].lat)} */
+			console.log(hotlist[hotlist].lat)
+		} */
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
 			center : new kakao.maps.LatLng(${hotplaceList[0].lat}, ${hotplaceList[0].lon}), // 지도의 중심좌표
