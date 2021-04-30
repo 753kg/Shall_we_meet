@@ -1,4 +1,3 @@
-
 package shallWe.Controller;
 
 import java.io.IOException;
@@ -70,5 +69,3 @@ public class FindDepartureServlet extends HttpServlet {
 	}
 
 }
-
-
