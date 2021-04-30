@@ -34,6 +34,44 @@ public class MemberPlanDAO {
 
 		return result;
 	}
+	
+	//멤버아이디와 플랜 아이디로 그 멤버의 lat,lon Select
+	public double[] selectMemberLocation(String plan_id,String member_id) {
+		MemberPlanVO memberplanvo = new MemberPlanVO();
+		double[] member_location = new double[2];
+		String sql = "select lat,lon "
+				+ " from members_plans "
+				+ " where plan_id = ? and member_id = ?";
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, plan_id);
+			st.setString(2, member_id);
+			rs= st.executeQuery();
+			while(rs.next()) {
+				member_location[0]=rs.getDouble("lat");//위도
+				member_location[1]=rs.getDouble("lon");//경도
+			}
+			
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(null, st, conn);
+		}
+
+		
+		return member_location;
+	}
+	
 
 	// 그룹 멤버들의 lat,lon select
 	public List<MemberPlanVO> selectLocationByGroup(String plan_id) {

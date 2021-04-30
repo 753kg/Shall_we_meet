@@ -9,27 +9,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
 <%--유연 --%>
-	<!-- <script type="text/javascript"
+<!-- <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script> -->
-	<%--채연 --%>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70"></script>
+<%--채연 --%>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70"></script>
 </head>
 <body>
 	<h1>만날 장소 추천!</h1>
 
 	<div id="map" style="width: 100%; height: 350px;"></div>
 	<div id="memberinfo">
-	<h5>ㅇㅇ님의 ㅇㅇ까지의 거리는 ㅇㅇKM입니다</h5>
+		<h5>${name }님의${hotplace_name }까지의거리는 KM입니다</h5>
 	</div>
 
 
 	<hr>
-  <div id="hlist"></div>
+	<div id="hlist"></div>
 	<div id="activity_view"></div>
 
 
@@ -97,6 +100,15 @@
 				image : markerImage
 			// 마커 이미지 
 			});
+			var markers =[marker1,marker2,marker3];
+			
+			for(i=0;i<markers.length;i++){
+			
+				kakao.maps.event.addListener(markers[i], 'click', function() {        
+               			alert("1");
+                
+         		});
+			}
 
 			var iwContent1 = '<div style="padding:5px;"><a>${hotplaceList[0].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			iwPosition1 = new kakao.maps.LatLng(${hotplaceList[0].lat}, ${hotplaceList[0].lon}); //인포윈도우 표시 위치입니다
