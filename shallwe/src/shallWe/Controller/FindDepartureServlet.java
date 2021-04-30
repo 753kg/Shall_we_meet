@@ -60,7 +60,7 @@ public class FindDepartureServlet extends HttpServlet {
       System.out.println(request.getParameter("plan_id"));
       
       
-      
+      response.sendRedirect("PlanSelectServlet");
       
 
       //mps.insertMember(member_id,plan_id,locationList[0],locationList[1]);

@@ -27,16 +27,13 @@
 
 	<div id="map" style="width: 100%; height: 350px;"></div>
 	<div id="memberinfo">
-		<h5><span id="memberID">${memberid}</span>님의 <span id="hotplace">${hotplaceList[0].hotplace_name}</span> 까지의거리는 <span id="distance">${distances[0] }</span>km입니다</h5>
+		<h5 id="memberdistance"></h5>
 	</div>
 
 
 	<hr>
 	<div id="hlist"></div>
 	<div id="activity_view"></div>
-
-
-
 
 	<script>	
 	
@@ -103,11 +100,25 @@
 			
 			var markers = [marker1, marker2, marker3];
 			
-			markers.forEach(function(element){
+			var arr = [];
+			var arr2 = [];
+			<c:forEach var="hlist" items="${hotplaceList}">
+			   arr.push("${hlist.hotplace_name}");
+			</c:forEach>
+			
+			<c:forEach var="dis" items="${distances}">
+			   arr2.push("${dis}");
+			</c:forEach>
+			
+			console.log(arr2);
+			markers.forEach(function(element,index){
 			    console.log(element);
-					kakao.maps.event.addListener(element, 'click', function() {        
-		       			alert(element.Fb);
-		       			$.ajax({
+					kakao.maps.event.addListener(element, 'click', function() {
+						//거리 계산
+						console.log(index)
+						memberdistance.innerHTML=`${memberid}님의 ` + arr[index] + `까지의 거리는 ` +arr2[index]+`km 입니다`;	
+						
+						$.ajax({
 	            			url : "AcivitySelect?location_name=" + element.Fb,
 	            			type : "get",
 	            			success : function(responsedata) {
@@ -115,7 +126,7 @@
 	            				$("#activity_view").html(responsedata);
 	            			},
 	            			error : function() {
-	            				console.log("에이젝스 ㅠㅠ")
+	            				console.log("ajax error")
 	            			}
 	            	});
 			});
