@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import shallWe.Service.DateSelect;
-import shallWe.VO.DateCountVO;
 import shallWe.VO.DateVO;
 
 @WebServlet("/memberDateList")
@@ -29,18 +28,12 @@ public class MemberDateList extends HttpServlet {
 		DateSelect service = new DateSelect();
 		System.out.println("MemberDateList>> " + plan_id);
 		try {
-			DateCountVO dlist = service.selectCountNDate(plan_id);
-			if(dlist.getCount().equals("1")) {
-				RequestDispatcher rd = 
-						request.getRequestDispatcher("date/seeyounexttime.jsp");
-				rd.forward(request, response);
-			} else {
-				request.setAttribute("mdall", dlist);
-				request.setAttribute("plan_id", plan_id);
-				RequestDispatcher rd = 
-						request.getRequestDispatcher("date/memberdates_retrieve.jsp");
-				rd.forward(request, response);
-			}
+			List<DateVO> dlist = service.selectAllDates(plan_id);
+			request.setAttribute("mdall", dlist);
+			request.setAttribute("plan_id", plan_id);
+			RequestDispatcher rd = 
+					request.getRequestDispatcher("date/memberdates_retrieve.jsp");
+			rd.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
