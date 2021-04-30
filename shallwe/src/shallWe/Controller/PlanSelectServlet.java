@@ -23,11 +23,12 @@ public class PlanSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 약속 조회
+		// �빟�냽 議고쉶
 		
 		PlanService service = new PlanService();
 		HttpSession session = request.getSession();
 		String memberid = (String) session.getAttribute("memberid");
+	
 		if(memberid == null) {
 			response.sendRedirect("../login/login.jsp");
 		}
