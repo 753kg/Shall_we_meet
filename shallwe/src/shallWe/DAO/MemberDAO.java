@@ -67,6 +67,31 @@ public class MemberDAO {
 		return m;
 	}
 
+	// 아이디체크
+	public MemberVO IDChk(String memberid) {
+		MemberVO m = null;
+		String sql = " select * from members where member_id = ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, memberid);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				m = makeMember(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return m;
+	}
+
 	public MemberVO makeMember(ResultSet rs) throws SQLException {
 		MemberVO m = new MemberVO();
 		m.setMember_id(rs.getString("member_id"));
