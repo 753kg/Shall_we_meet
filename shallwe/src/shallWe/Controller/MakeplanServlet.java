@@ -32,7 +32,7 @@ public class MakeplanServlet extends HttpServlet {
 		String host_id = request.getParameter("host_id");
 		String plan_name = request.getParameter("plan_name");
 		int numbers = Integer.parseInt(request.getParameter("membercount"));
-		String host_date = request.getParameter("host_date");
+		   
 		String host_place = request.getParameter("host_place");
 
 		String host_lat = request.getParameter("host_lat");
@@ -51,58 +51,23 @@ public class MakeplanServlet extends HttpServlet {
 			}
 		}
 
-		/*
+		
 		// 무조건 plans, members_plans 입력
+		
+		//1.plans insert
 		PlanService ps = new PlanService();
 		ps.insertPlan(plan_id, plan_name, host_id, numbers);
 		MemberPlanService mps = new MemberPlanService();
-		
+		//2.장소만 선택하는 경우 
+		//-host : members_plans(member_id,plan_id,lat,lon
+		//-친구들 : members_plans(member_id,plan_id)-->위치는 finddepartureServlet
 		for(String friend_id : friend_id_list) {
 			mps.insertMemberPlan(plan_id, friend_id, 0.0, 0.0);
 		}
 		
-		// host?????
-		//mps.insertMemberPlan(plan_id, host_id, lat, lon)
 		
-		// 날짜 선택 안했으면 (장소만 선택)
-		if(host_date.equals("")) {
-			// members_plans에 lat, lon 입력
-			System.out.println("host_date: " + host_date);
-		} 
+	
 		
-		// 장소 선택 안했으면 (날짜만 선택)
-		if(host_place.equals("")) {
-			// date_options에 plan_id, host_date 입력
-		}
-		
-		else {
-			System.out.println("host_date 없음");
-		}
-		if(!host_place.equals("")) {
-			System.out.println("host_place: " + host_place);			
-		} else {
-			System.out.println("host_place 없음");
-		}
-		System.out.println("host_id: " + host_id);
-		System.out.println("plan_name: " + plan_name);
-		System.out.println("membercount: " + numbers);
-		
-		for(String f:friend_id_list) {
-			System.out.println("friends: " + f);
-		}
-		*/
-		// host_id, plan_name, membercount --> plans
-		// host_date --> date_options
-		// host_id, friends --> members_plans
-		
-		// members_plans에 insert하려면  plan_id가 필요.
-		// plan_id를 어떻게 가져오지..? 
-		// 프로시저 써야하나
-		/*
-		
-		System.out.println("host_date: " + host_date);
-		System.out.println("host_place: " + host_place);
-		*/
 		
 		response.sendRedirect("PlanSelectServlet");
 	}

@@ -18,8 +18,7 @@
 
 <body>
 
-	<%@include file="../frontDesign/header.jsp" %>
-    
+
     <section class="hero-wrap hero-wrap-2" style="background-image: url('../frontDesign/imageSource/배경이미지.png');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
@@ -50,6 +49,6 @@
 
 
     <section class="footer25" style="position:relative; top:400px;">
-      <%@include file="../frontDesign/footer.jsp" %>
+ 
 </body>
 </html>
