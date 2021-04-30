@@ -33,7 +33,9 @@ public class DateDAO {
 			rs = st.executeQuery();
 			
 			while(rs.next()) {
-				mlist.add(new MemberPlanVO(rs.getString(1),rs.getInt(2), rs.getDouble(3),rs.getDouble(4)));
+				mlist.add(new MemberPlanVO(rs.getString(1),
+						rs.getString(2), rs.getDouble(3),
+						rs.getDouble(4)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -43,7 +45,7 @@ public class DateDAO {
 		}
 		return mlist;
 	}
-
+	
 	//諛⑹옣
 	//諛⑹옣�쓽 �궇吏� 踰붿쐞瑜� ���옣�븳�떎. (servlet�뿉�꽌 諛섎났�떆耳쒖빞 �븳�떎.)
 	public int insertMasterDate (String planid, String hostdate) {
