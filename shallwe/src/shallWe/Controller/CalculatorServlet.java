@@ -44,10 +44,10 @@ public class CalculatorServlet extends HttpServlet {
 		}
 		
 		//회원과 핫플레이스 간에 거리를 계산
-		//String[] distances = mps.calculateMemberDistance(mps.selectMemberLocation(plan_id, memberid),hotlist);
-		//setAttribute
+		String[] distances = mps.calculateMemberDistance(mps.selectMemberLocation(plan_id, memberid),hotlist);
+		
 		request.setAttribute("hotplaceList", hotlist);
-		//request.setAttribute("distances", distances);
+		request.setAttribute("distances", distances);
 		RequestDispatcher rd = request.getRequestDispatcher("retrieveActivityMain.jsp");
 		rd.forward(request, response);
 		
