@@ -1,26 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4"></script>
 </head>
 <body>
-	<h1>만날 장소 추천!</h1>
-
-	<div id="map" style="width: 100%; height: 350px;"></div>
-	<div id="user_info">
-	<p>~님이 홍대까지 거리는 OOkm입니다</p>
-	</div>
-
+	<h1>${location_name }의 액티비티 조회 페이지</h1>
 	<button id="btn_restaurants">식당</button>
 	<button id="btn_cafes">카페</button>
 	<button id="btn_activities">액티비티</button>
@@ -58,7 +52,7 @@
 
 		];
 
-		// 마커 이미지의 이미지 주소입니다
+		// 마커 이미지의 이미지 주소입니
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
 		for (var i = 0; i < positions.length; i++) {
