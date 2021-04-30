@@ -10,22 +10,14 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4"></script>
 </head>
 <body>
 	<h1>${location_name }의 액티비티 조회 페이지</h1>
 	<button id="btn_restaurants">식당</button>
 	<button id="btn_cafes">카페</button>
 	<button id="btn_activities">액티비티</button>
-
-	<div id="activities"></div>
-
-
-
-
-	<script>	
 	
+<<<<<<< HEAD
 		/* for(var vs=0;vs<3;vs++){
 			console.log(hotlist[hotlist].lat)
 		} */
@@ -120,6 +112,13 @@
 	</script>
 
 
+	<div id="activities"></div>
+	<div class="page_area">
+		<ul id="pages">
+		</ul>
+	</div>
+
+
 	<script>
 	btn_restaurants.onclick = function(){
 		activities.innerHTML = `
@@ -159,6 +158,10 @@
 		</c:forEach>
 		`;
 	};
+	
+	btn_restaurants.click();
+	
+	
 	</script>
 </body>
 </html>

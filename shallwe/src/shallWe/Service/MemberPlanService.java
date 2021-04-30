@@ -21,7 +21,7 @@ public class MemberPlanService {
 		String str = temp;
 		double lat = 0.0;
 		double lon = 0.0;
-		// (ê²½ë„,ìœ„ë„)
+		// (°æµµ,À§µµ)
 		double[] locationList = new double[3];
 
 		String[] location = str.split(",| ");
@@ -30,16 +30,16 @@ public class MemberPlanService {
 			String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s\'.']";
 			location[i] = location[i].replaceAll(match, "");
 
-			if (i == 0) {// ê²½ë„
+			if (i == 0) {// °æµµ
 				lon = Double.parseDouble(location[i]);
-			} else if (i == 2) {// ìœ„ë„
+			} else if (i == 2) {// À§µµ
 				lat = Double.parseDouble(location[i]);
 			}
 		}
-		// lat(ìœ„ë„ 127) ,lon(ê²½ë„)37
+		// lat(À§µµ 127) ,lon(°æµµ)37
 		System.out.println(lat + "," + lon);
-		locationList[0] = lat;// ìœ„ë„
-		locationList[1] = lon;// ê²½ë„
+		locationList[0] = lat;// À§µµ
+		locationList[1] = lon;// °æµµ
 
 		return locationList;
 	}
@@ -53,7 +53,7 @@ public class MemberPlanService {
 
 	}
 
-	//ì¤‘ê°„ê±°ë¦¬ì—ì„œ ê°€ê¹Œìš´ í•«í”Œë ˆì´ìŠ¤ 3ê°œ Stringë°°ì—´ë¡œ ë¦¬í„´
+	//Áß°£°Å¸®¿¡¼­ °¡±î¿î ÇÖÇÃ·¹ÀÌ½º 3°³ String¹è¿­·Î ¸®ÅÏ
 	public String[] informMiddlePlace(String plan_id) {
 		MemberPlanDAO mpdao = new MemberPlanDAO();
 		HotplaceDAO hpdao = new HotplaceDAO();
@@ -73,7 +73,7 @@ public class MemberPlanService {
 		}
 		double middle_lat = lat_sum / count;
 		double middle_lon = lon_sum / count;
-		// ìœ„ë„ 37 ê²½ë„ 127
+		// À§µµ 37 °æµµ 127
 		for (HotplaceVO hotplace : hotplaces) {
 			
 			double result = distance(middle_lat, middle_lon, hotplace.getLat(), hotplace.getLon(), "kilometer");
@@ -106,7 +106,7 @@ public class MemberPlanService {
 	
 	
 	
-	//ê±°ë¦¬êµ¬í•˜ëŠ” ë©”ì†Œë“œ
+	//°Å¸®±¸ÇÏ´Â ¸Ş¼Òµå
 
 	private double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
 

@@ -14,4 +14,8 @@ public class MemberService {
 	public MemberVO loginChk(String memberid, String memberpw) {
 		return dao.loginChk(memberid, memberpw);
 	}
+	
+	public MemberVO IDChk(String memberid) {
+		return dao.IDChk(memberid);
+	}
 }

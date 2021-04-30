@@ -12,7 +12,7 @@ import shallWe.VO.MemberPlanVO;
 
 public class MemberPlanDAO {
 
-	// ê° ë©¤ë²„ì˜ lat,lon ë„£ê¸°
+	// °¢ ¸â¹öÀÇ lat,lon ³Ö±â
 	public int updateMemberLocation(String member_id, String plan_id, double lat, double lon) {
 		int result = 0;
 		String sql = "update members_plans set lat = ?, lon = ?" + " where member_id = ? and plan_id = ?";
@@ -35,7 +35,7 @@ public class MemberPlanDAO {
 		return result;
 	}
 
-	// ê·¸ë£¹ ë©¤ë²„ë“¤ì˜ lat,lon select
+	// ±×·ì ¸â¹öµéÀÇ lat,lon select
 	public List<MemberPlanVO> selectLocationByGroup(String plan_id) {
 		
 		List<MemberPlanVO> mlist = new ArrayList<MemberPlanVO>();
@@ -78,7 +78,7 @@ public class MemberPlanDAO {
 		return memberplanVO;
 	}
 
-	// í˜¸ìŠ¤íŠ¸ì˜ ê²½ìš° ìœ„ì¹˜ë„ ë‹¤ ì‚½ì… , í˜¸ìŠ¤íŠ¸ê°€ ì•„ë‹Œê²½ìš° ìœ„ë„ ê²½ë„ëŠ” 0 ì‚½ì…
+	// È£½ºÆ®ÀÇ °æ¿ì À§Ä¡µµ ´Ù »ğÀÔ , È£½ºÆ®°¡ ¾Æ´Ñ°æ¿ì À§µµ °æµµ´Â 0 »ğÀÔ
 
 	public int insertMemberPlan(String plan_id, String member_id, double lat, double lon) {
 		int result = 0;
