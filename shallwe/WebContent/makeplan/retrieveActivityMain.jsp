@@ -55,22 +55,22 @@
 
 		// 마커를 표시할 위치와 title 객체 배열입니다 
 		var positions = [ {
-			title : '1',
+			title : '${hotplaceList[0].hotplace_name}',
 			latlng : new kakao.maps.LatLng(${hotplaceList[0].lat}, ${hotplaceList[0].lon})
 		}, {
-			title : '2',
+			title : '${hotplaceList[1].hotplace_name}',
 			latlng : new kakao.maps.LatLng(${hotplaceList[1].lat}, ${hotplaceList[1].lon})
 		}, {
-			title : '3',
+			title : '${hotplaceList[2].hotplace_name}',
 			latlng : new kakao.maps.LatLng(${hotplaceList[2].lat}, ${hotplaceList[2].lon})
 		}
 
 		];
-
+	
 		// 마커 이미지의 이미지 주소입니다
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-		for (var i = 0; i < positions.length; i++) {
+		
 
 			// 마커 이미지의 이미지 크기 입니다
 			var imageSize = new kakao.maps.Size(24, 35);
@@ -100,15 +100,34 @@
 				image : markerImage
 			// 마커 이미지 
 			});
-			var markers =[marker1,marker2,marker3];
 			
-			for(i=0;i<markers.length;i++){
+			var markers = [marker1, marker2, marker3];
+			
+			markers.forEach(function(element){
+			    console.log(element);
+					kakao.maps.event.addListener(element, 'click', function() {        
+		       			alert(element.Fb);
+		       			$.ajax({
+	            			url : "AcivitySelect?location_name=" + element.Fb,
+	            			type : "get",
+	            			success : function(responsedata) {
+	            				
+	            				$("#activity_view").html(responsedata);
+	            			},
+	            			error : function() {
+	            				console.log("에이젝스 ㅠㅠ")
+	            			}
+	            	});
+			});
+        
+ 			});
+			/* for(i=0;i<markers.length;i++){
 			
 				kakao.maps.event.addListener(markers[i], 'click', function() {        
-               			alert("1");
+               			alert(markers[i]);
                 
          		});
-			}
+			} */
 
 			var iwContent1 = '<div style="padding:5px;"><a>${hotplaceList[0].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			iwPosition1 = new kakao.maps.LatLng(${hotplaceList[0].lat}, ${hotplaceList[0].lon}); //인포윈도우 표시 위치입니다
@@ -140,11 +159,12 @@
 			infowindow1.open(map, marker1);
 			infowindow2.open(map, marker2);
 			infowindow3.open(map, marker3);
-		}
+		
 	</script>
 
 
 	<script>
+	/*
 	hotplaces = ['홍대', '이태원', '잠실'];
     makeBtn(hotplaces);
     function makeBtn(hosplaces){
@@ -172,7 +192,7 @@
              hlist.appendChild(newBtn);
           }
        }
-	
+	*/
 	</script>
 </body>
 </html>
