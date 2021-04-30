@@ -18,7 +18,7 @@
 
 	<div id="map" style="width: 100%; height: 350px;"></div>
 	<div id="memberinfo">
-	<h5>ㅇㅇ님의 ㅇㅇ까지의 거리는 ㅇㅇKM입니다</h5>
+		<h5>${name }님의${hotplace_name }까지의 거리는 KM입니다</h5>
 	</div>
 
 	<button id="btn_restaurants">식당</button>
@@ -61,7 +61,7 @@
 		// 마커 이미지의 이미지 주소입니다
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-		for (var i = 0; i < positions.length; i++) {
+		
 
 			// 마커 이미지의 이미지 크기 입니다
 			var imageSize = new kakao.maps.Size(24, 35);
@@ -69,6 +69,8 @@
 			// 마커 이미지를 생성합니다    
 			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
+			
+			
 			// 마커를 생성합니다
 			var marker1 = new kakao.maps.Marker({
 				map : map, // 마커를 표시할 지도
@@ -77,6 +79,7 @@
 				image : markerImage
 			// 마커 이미지 
 			});
+			
 			var marker2 = new kakao.maps.Marker({
 				map : map, // 마커를 표시할 지도
 				position : positions[1].latlng, // 마커를 표시할 위치
@@ -91,7 +94,16 @@
 				image : markerImage
 			// 마커 이미지 
 			});
-
+			
+			var markers =[marker1,marker2,marker3];
+			
+			for(i=0;i<markers.length;i++){
+			
+				kakao.maps.event.addListener(markers[i], 'click', function() {        
+               			alert("1");
+                
+         		});
+			}
 			var iwContent1 = '<div style="padding:5px;"><a>${hotplaceList[0].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			iwPosition1 = new kakao.maps.LatLng(${hotplaceList[0].lat}, ${hotplaceList[0].lon}); //인포윈도우 표시 위치입니다
 			
@@ -122,7 +134,7 @@
 			infowindow1.open(map, marker1);
 			infowindow2.open(map, marker2);
 			infowindow3.open(map, marker3);
-		}
+		
 	</script>
 
 
