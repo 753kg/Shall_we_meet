@@ -17,43 +17,45 @@
 </head>
 <script>
 var arr = [];
-var fdate;
+var farr = [];
 
 $(function() {
-	console.log($("input[name='dt']"));
-	$("input[name='dt']").each(function(idx, item){
-		arr.push($(item).val());
-	});
-	
-   // alert(arr.toString());
-	$('#datepicker').datepicker({
-		startDate : new Date(),
-		multidate : true,
-		dateFormat : "yy/mm/dd",
-		daysOfWeekHighlighted : "5,6",
-		language : 'en',
-		beforeShowDay: available ,
-		minDate : 0,
-		
-		onSelect : function(date, aa) {
-			fdate = date;
-			alert(fdate);
-			$(aa).toggleClass('ui-state-highlight');	
-		}
-	});
-//	$("#datepicker").datepicker("option","dateFormat","yy-mm-dd");
+   console.log($("input[name='dt']"));
+   $("input[name='dt']").each(function(idx, item){
+      arr.push($(item).val());
+   });
+   
+   if(count == "1")
+      alert('가능하신 날짜가 없습니다. 날짜를 조율하시거나 다음에 만납시다..');
+
+   $('#datepicker').datepicker({
+      startDate : new Date(),
+      multidate : true,
+      dateFormat : "yy/mm/dd",
+      daysOfWeekHighlighted : "5,6",
+      language : 'en',
+      beforeShowDay: available ,
+      minDate : 0,
+      
+      onSelect : function(date, aa) {
+         farr.push(date);
+         alert(farr);
+         $(aa).toggleClass('ui-state-highlight');   
+      }
+   });
+
 });
 
 function available(date) {
-	console.log(date);
-	var thismonth = date.getMonth()+1;
-	var thisday = date.getDate();
-	if(thismonth<10){
-		thismonth = "0"+thismonth;
-	}
-	if(thisday<10){
-		thisday = "0"+thisday;
-	}
+   console.log(date);
+   var thismonth = date.getMonth()+1;
+   var thisday = date.getDate();
+   if(thismonth<10){
+      thismonth = "0"+thismonth;
+   }
+   if(thisday<10){
+      thisday = "0"+thisday;
+   }
     ymd = date.getFullYear() + "-" + thismonth + "-" + thisday;
 
     if ($.inArray(ymd, arr) >= 0) {
@@ -63,28 +65,28 @@ function available(date) {
     }
 }
 
-
-
 function call(planid){
-	location.href = "masterFixDate?dates="+fdate+"&plan_id=" + planid;
+   location.href = "masterFixDate?dates="+farr.toString()+"&plan_id=" + planid;
+   
 }
 </script>
 <body>
-<h3>최종 날짜를 멤버들이 선택한 날짜중에 골라주세요</h3>
-  <c:forEach var="dates" items="${mdall}"> 
- <!--   	<td>${dates.select_date}</td><br>-->
-    <input type="hidden" name="dt" value="${fn:substring(dates.select_date,0,10)}"/>
+<h3>최다 멤버들이 가능한 날짜입니다.</h3>
+  <c:forEach var="dates" items="${mdall.date}"> 
+       ${mdall.date}
+       ${mdall.count}명
+    <input type="hidden" name="dt" value="${fn:substring(mdall.date,0,10)}"/>
    </c:forEach>
 
-	<div class="input-group date form-group" id="datepicker">
-		<input type="text" class="form-control" id="Dates" name="Dates" placeholder="Select days" required /> 
-			<span class="input-group-addon">
-			 <i class="glyphicon glyphicon-calendar"></i>
-			 <span class="count">
-			</span>
-		 </span>
-	</div>
-	 	<button onclick="call('${plan_id}');">확인</button> 
+   <div class="input-group date form-group" id="datepicker">
+      <input type="text" class="form-control" id="Dates" name="Dates" placeholder="Select days" required /> 
+         <span class="input-group-addon">
+          <i class="glyphicon glyphicon-calendar"></i>
+          <span class="count">
+         </span>
+       </span>
+   </div>
+       <button onclick="call('${plan_id}');">확인</button> 
 </body>
 <script type="text/javascript">
 </script>

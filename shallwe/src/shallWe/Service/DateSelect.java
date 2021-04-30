@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shallWe.DAO.DateDAO;
+import shallWe.VO.DateCountVO;
 import shallWe.VO.DateOptionVO;
 import shallWe.VO.DateVO;
 import shallWe.VO.MemberPlanVO;
@@ -28,18 +29,18 @@ public class DateSelect {
 			return result;
 		}
 		
-		//�뵆�옖 �븘�씠�뵒瑜� �넻�빐 MemberDAO�뿉�꽌 member_id�� plan_id瑜� 諛쏆븘�삩�떎.
+		//占쎈탣占쎌삏 占쎈툡占쎌뵠占쎈탵�몴占� 占쎈꽰占쎈퉸 MemberDAO占쎈퓠占쎄퐣 member_id占쏙옙 plan_id�몴占� 獄쏆룇釉섓옙�궔占쎈뼄.
 		public  List<MemberPlanVO> selectAllMembers(String planid) throws SQLException{
 			List<MemberPlanVO> list = dao.selectMemIdplanId(planid);
 			if(list.size() == 0) 
-				throw new SQLException("planId�� memberId瑜� 諛쏆븘�삱 �닔 �뾾�뒿�땲�떎.");
+				throw new SQLException("planId占쏙옙 memberId�몴占� 獄쏆룇釉섓옙�궞 占쎈땾 占쎈씨占쎈뮸占쎈빍占쎈뼄.");
 			return list;
 		}
 		
 		public List<DateOptionVO> selectHostDates(String planid) throws SQLException{
 			List<DateOptionVO> list = dao.selectHostDates(planid);
 			if(list.size() == 0)
-				throw new SQLException("�궇吏� 踰붿쐞 紐⑸줉 error");
+				throw new SQLException("占쎄텊筌욑옙 甕곕뗄�맄 筌뤴뫖以� error");
 			return list;
 		}
 		
@@ -56,18 +57,26 @@ public class DateSelect {
 		public int updateFixDate(String date , String planid) throws SQLException {
 			int result = dao.updateFixDate(date, planid);
 			if(result == 0)
-				throw new SQLException("理쒖쥌 �빟�냽 �궇吏쒕�� �꽑�깮�븷 �닔 �뾾�뒿�땲�떎.");
+				throw new SQLException("筌ㅼ뮇伊� 占쎈튋占쎈꺗 占쎄텊筌욎뮆占쏙옙 占쎄퐨占쎄문占쎈막 占쎈땾 占쎈씨占쎈뮸占쎈빍占쎈뼄.");
 			return result;
 			
 		}
 		public List<DateVO> selectAllDates(String planid) throws SQLException{
 			List<DateVO> dlist = dao.selectAllDates(planid);
 			if(dlist.size() == 0)
-				throw new SQLException("date 紐⑸줉 �뿉�윭");
+				throw new SQLException("date 筌뤴뫖以� 占쎈퓠占쎌쑎");
 			return dlist;
 		}
-		
-		
+
+		public DateCountVO selectCountNDate(String planid) throws SQLException {
+			// List<DateVO> dlist = dao.selectAllDates(planid);
+			DateCountVO dc = dao.selectCountNDate(planid);
+			if (dc.getCount() == "0") {
+				System.out.println("만날 운명이 아닙니다...");
+			}
+			return dc;
+		}
+
 //		public static List<DateVO> list(int planid){
 //			List<DateVO> dlist = dao.datesInsert(planid);
 //			return dlist;

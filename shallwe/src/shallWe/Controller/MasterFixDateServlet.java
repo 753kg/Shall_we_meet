@@ -29,7 +29,7 @@ public class MasterFixDateServlet extends HttpServlet {
 		try {
 			request.setAttribute("fdate", service.updateFixDate(fixdate, plan_id));
 			RequestDispatcher rd = 
-					request.getRequestDispatcher("date/successPage.jsp");
+					request.getRequestDispatcher("makeplan/PlanSelectServlet");
 			rd.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -162,37 +162,5 @@
 		
 	</script>
 
-
-	<script>
-	/*
-	hotplaces = ['홍대', '이태원', '잠실'];
-    makeBtn(hotplaces);
-    function makeBtn(hosplaces){
-    	
-        for(let i=0; i<hotplaces.length; i++){
-             var atr = hotplaces[i];
-             var newBtn = document.createElement("input");
-             newBtn.type = "button";
-             newBtn.value = atr;
-             newBtn.name = "location_name";
-             newBtn.onclick = function(){
-            	 $.ajax({
-            			url : "AcivitySelect?location_name=" + hotplaces[i],
-            			type : "get",
-            			success : function(responsedata) {
-            				
-            				$("#activity_view").html(responsedata);
-            			},
-            			error : function() {
-            				console.log("에이젝스 ㅠㅠ")
-            			}
-            		});
-            	 //location.href = "AcivitySelect?location_name=홍대";
-             };
-             hlist.appendChild(newBtn);
-          }
-       }
-	*/
-	</script>
 </body>
 </html>

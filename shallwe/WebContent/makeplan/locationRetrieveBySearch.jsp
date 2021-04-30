@@ -323,9 +323,9 @@
             $("#host_lon").val(places.y);
             $("#host_place").val(places.place_name);
             //위도
-            $("#member_lat").val(placePosition.Ma);
+            $("#member_lat").val(places.x);
             //경도
-            $("#member_lon").val(placePosition.La);
+            $("#member_lon").val(places.y);
             $("#host_place").val(title);
          };
          return el;
