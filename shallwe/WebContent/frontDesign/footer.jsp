@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String top = request.getParameter("top");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +12,7 @@
 </head>
 <body>
     
+    <section class="footer25" style="position:relative; top:<%=top%>px;">
       <div class="container-fluid px-0 py-5 bg-black">
       	<div class="container">
       		<div class="row">

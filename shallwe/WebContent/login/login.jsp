@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,22 +20,9 @@
 </head>
 
 <body>
-
-
-	<%@include file="../frontDesign/header.jsp" %>
-
-    
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('../frontDesign/imageSource/배경이미지.png');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-end justify-content-center">
-          <div class="col-md-9 ftco-animate mb-5 text-center">
-          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="../mainView/main.jsp">Home <i class="fa fa-chevron-right"></i></a></span> </p>
-            <img class="header-title25" src ="../frontDesign/imageSource/로그인.png"> 
-          </div>
-        </div>
-      </div>
-    </section>
+	<jsp:include page="../frontDesign/header.jsp">
+		<jsp:param name="pageName" value="로그인"/>
+	</jsp:include>
 
 
    <section>
@@ -50,10 +40,9 @@
 	</div>
     </section>
 
-
-    <section class="footer25" style="position:relative; top:400px;">
-
-      <%@include file="../frontDesign/footer.jsp" %>
+    <jsp:include page="../frontDesign/footer.jsp">
+		<jsp:param name="top" value="400"/>
+	</jsp:include>
 
 </body>
 </html>

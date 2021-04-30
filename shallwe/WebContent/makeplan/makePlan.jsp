@@ -42,19 +42,9 @@
 
 
 <body>
-<!-- header -->
-	<%@include file="../frontDesign/header.jsp" %>
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('../frontDesign/imageSource/배경이미지.png');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-end justify-content-center">
-          <div class="col-md-9 ftco-animate mb-5 text-center">
-          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="../mainView/main.jsp">Home <i class="fa fa-chevron-right"></i></a></span> <span>약속 <i class="fa fa-chevron-right"></i></span></p>
-            <img class="header-title25" src ="../frontDesign/imageSource/새약속만들기.png"> 
-          </div>
-        </div>
-      </div>
-    </section>
+	<jsp:include page="../frontDesign/header_plan.jsp">
+		<jsp:param name="pageName" value="새약속만들기"/>
+	</jsp:include>
 
 <!-- 본문 시작 --> 
    <section>
@@ -226,8 +216,9 @@
 
 
 <!-- footer -->
-    <section class="footer25" style="position:relative; top:1400px;">
-      <%@include file="../frontDesign/footer.jsp" %>
+    <jsp:include page="../frontDesign/footer.jsp">
+		<jsp:param name="top" value="1400"/>
+	</jsp:include>
 
 </body>
 </html>
