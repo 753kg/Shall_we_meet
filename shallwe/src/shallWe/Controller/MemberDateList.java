@@ -22,12 +22,15 @@ public class MemberDateList extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    //ë°©ìž¥ì´ ë©¤ë²„ê°€ ì„ íƒí•œ ë‚ ì§œë“¤ ì¤‘ì—ì„œ ë‚ ì§œë¥¼ ê³ ë¥´ëŠ” íŽ˜ì´ì§€ë¡œ ë„˜ê¸°ëŠ”ê³³
+    //¹æÀåÀÌ ¸â¹ö°¡ ¼±ÅÃÇÑ ³¯Â¥µé Áß¿¡¼­ ³¯Â¥¸¦ °í¸£´Â ÆäÀÌÁö·Î ³Ñ±â´Â°÷
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String plan_id = request.getParameter("plan_id");
 		DateSelect service = new DateSelect();
+		System.out.println("MemberDateList>> " + plan_id);
 		try {
-			List<DateVO> dlist = service.selectAllDates("1","mem1");
+			List<DateVO> dlist = service.selectAllDates(plan_id);
 			request.setAttribute("mdall", dlist);
+			request.setAttribute("plan_id", plan_id);
 			RequestDispatcher rd = 
 					request.getRequestDispatcher("date/memberdates_retrieve.jsp");
 			rd.forward(request, response);

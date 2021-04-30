@@ -65,8 +65,8 @@ function available(date) {
 
 
 
-function call(){
-	location.href = "masterFixDate?dates="+fdate;
+function call(planid){
+	location.href = "masterFixDate?dates="+fdate+"&plan_id=" + planid;
 }
 </script>
 <body>
@@ -84,7 +84,7 @@ function call(){
 			</span>
 		 </span>
 	</div>
-	 	<button onclick="call();">확인</button> 
+	 	<button onclick="call('${plan_id}');">확인</button> 
 </body>
 <script type="text/javascript">
 </script>

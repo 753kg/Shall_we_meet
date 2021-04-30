@@ -22,10 +22,12 @@ public class MasterFixDateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fixdate = request.getParameter("dates");
+		String plan_id = request.getParameter("plan_id");
+		System.out.println("MemberDateList>> " + plan_id);
 		System.out.println(fixdate);
 		DateSelect service = new DateSelect();
 		try {
-			request.setAttribute("fdate", service.updateFixDate(fixdate, "1", "mem1"));
+			request.setAttribute("fdate", service.updateFixDate(fixdate, plan_id));
 			RequestDispatcher rd = 
 					request.getRequestDispatcher("date/successPage.jsp");
 			rd.forward(request, response);

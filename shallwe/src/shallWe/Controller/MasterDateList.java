@@ -21,7 +21,7 @@ public class MasterDateList extends HttpServlet {
     public MasterDateList() {
         super();
     }
-    //멤버가 방장이 선택한 날짜들 중에서 고르는 페이지로 넘기는곳
+    //硫ㅻ쾭媛� 諛⑹옣�씠 �꽑�깮�븳 �궇吏쒕뱾 以묒뿉�꽌 怨좊Ⅴ�뒗 �럹�씠吏�濡� �꽆湲곕뒗怨�
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String plan_id = request.getParameter("plan_id");
 		System.out.println(plan_id);

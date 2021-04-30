@@ -8,6 +8,11 @@ public class DateVO {
 	String select_date;
 
 	public DateVO() {}
+	
+	public DateVO(String plan_id, String select_date) {
+		this.plan_id = plan_id;
+		this.select_date = select_date;
+	}
 
 	public DateVO(String plan_id, String member_id, String select_date) {
 		this.plan_id = plan_id;

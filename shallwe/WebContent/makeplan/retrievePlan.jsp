@@ -28,8 +28,8 @@
          <p>numbers : ${plan.numbers }</p>
          <button type="button" id="test" onclick="goToSelectLocationbyMember('${plan.plan_id }')">장소 선택하기</button>
          <button type="button" id="middle" onclick="goToCalculator('${plan.plan_id }')">중간거리 확인!</button>
-         <button type="button" id="test" onclick="goToSelectDatebyMember('${plan.plan_id }')">날짜 선택하기</button>
-         <button type="button" id="middle" onclick="goToCalculator('${plan.plan_id }')">중간거리 확인!</button>
+         <button type="button" id="selectDate" onclick="goToSelectDatebyMember('${plan.plan_id }')">날짜 선택하기</button>
+         <button type="button" id="fixDate" onclick="goToFixDate('${plan.plan_id }')">날짜 확정!!!</button>
       </div>
    </c:forEach>
    
@@ -69,6 +69,9 @@
       }
       function goToSelectDatebyMember(planid) {
          location.href ="../masterDateList?plan_id="+planid;
+      }
+      function goToFixDate(planid) {
+         location.href ="../memberDateList?plan_id="+planid;
       }
       
    </script>

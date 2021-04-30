@@ -34,12 +34,11 @@ public class AcivitySelectServlet extends HttpServlet {
 		
 		Gson gson = new Gson();
 		String json_rlist = gson.toJson(rlist);
+		String json_clist = gson.toJson(clist);
+		String json_alist = gson.toJson(alist);
 		request.setAttribute("rlist", json_rlist);
-		request.setAttribute("clist", clist);
-		request.setAttribute("alist", alist);
-		//request.setAttribute("rlist_size", rlist.size());
-		//request.setAttribute("clist_size", clist.size());
-		//request.setAttribute("alist_size", alist.size());
+		request.setAttribute("clist", json_clist);
+		request.setAttribute("alist", json_alist);
 
 		request.setAttribute("location_name", location_name);
 		//RequestDispatcher rd = request.getRequestDispatcher("retrieveActivityMain.jsp");

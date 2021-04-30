@@ -28,18 +28,18 @@ public class DateSelect {
 			return result;
 		}
 		
-		//플랜 아이디를 통해 MemberDAO에서 member_id와 plan_id를 받아온다.
+		//�뵆�옖 �븘�씠�뵒瑜� �넻�빐 MemberDAO�뿉�꽌 member_id�� plan_id瑜� 諛쏆븘�삩�떎.
 		public  List<MemberPlanVO> selectAllMembers(String planid) throws SQLException{
 			List<MemberPlanVO> list = dao.selectMemIdplanId(planid);
 			if(list.size() == 0) 
-				throw new SQLException("planId와 memberId를 받아올 수 없습니다.");
+				throw new SQLException("planId�� memberId瑜� 諛쏆븘�삱 �닔 �뾾�뒿�땲�떎.");
 			return list;
 		}
 		
 		public List<DateOptionVO> selectHostDates(String planid) throws SQLException{
 			List<DateOptionVO> list = dao.selectHostDates(planid);
 			if(list.size() == 0)
-				throw new SQLException("날짜 범위 목록 error");
+				throw new SQLException("�궇吏� 踰붿쐞 紐⑸줉 error");
 			return list;
 		}
 		
@@ -53,17 +53,17 @@ public class DateSelect {
 			}
 			return result;
 		}
-		public int updateFixDate(String date , String planid, String hostid) throws SQLException {
-			int result = dao.updateFixDate(date, planid, hostid);
+		public int updateFixDate(String date , String planid) throws SQLException {
+			int result = dao.updateFixDate(date, planid);
 			if(result == 0)
-				throw new SQLException("최종 약속 날짜를 선택할 수 없습니다.");
+				throw new SQLException("理쒖쥌 �빟�냽 �궇吏쒕�� �꽑�깮�븷 �닔 �뾾�뒿�땲�떎.");
 			return result;
 			
 		}
-		public List<DateVO> selectAllDates(String planid, String memberid) throws SQLException{
-			List<DateVO> dlist = dao.selectAllDates(planid, memberid);
+		public List<DateVO> selectAllDates(String planid) throws SQLException{
+			List<DateVO> dlist = dao.selectAllDates(planid);
 			if(dlist.size() == 0)
-				throw new SQLException("date 목록 에러");
+				throw new SQLException("date 紐⑸줉 �뿉�윭");
 			return dlist;
 		}
 		
