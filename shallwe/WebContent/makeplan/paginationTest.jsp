@@ -11,9 +11,9 @@
 </head>
 <body>
 <div>
-		<button type="button" id="restaurants">식당</button>
-		<button type="button" id="cafes">카페</button>
-		<button type="button" id="activities">액티비티</button>
+		<button type="button" id="restaurants">식당1</button>
+		<button type="button" id="cafes">카페1</button>
+		<button type="button" id="activities">액티비티1</button>
     <section>
         <div id="data-container"></div>
         <div id="pagination"></div>
@@ -21,8 +21,10 @@
 </div>
 
 <script>
+		
+		var container = $('#pagination');
+		console.log(container);
 		$("#restaurants").click(function(){
-			let container = $('#pagination');
 	        container.pagination({
 	            dataSource: JSON.parse('${rlist}'),
 	            pageSize: 5,
@@ -45,7 +47,7 @@
 		});
 		
 		$("#cafes").click(function(){
-			let container = $('#pagination');
+			
 	        container.pagination({
 	            dataSource: JSON.parse('${clist}'),
 	            pageSize: 5,
@@ -68,7 +70,6 @@
 		});
 		
 		$("#activities").click(function(){
-			let container = $('#pagination');
 	        container.pagination({
 	            dataSource: JSON.parse('${alist}'),
 	            pageSize: 5,
