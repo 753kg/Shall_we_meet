@@ -170,7 +170,7 @@
          <div class="option">
             <div>
                <form onsubmit="searchPlaces(); return false;">
-                  키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+                  키워드 : <input type="text" value="서울역" id="keyword" size="15">
                   <button type="submit">검색하기</button>
                </form>
             </div>
@@ -182,11 +182,11 @@
    </div>
 
    <%--유연 --%>
-   <!-- <script type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script> -->
-   <%--채연 --%>
    <script type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70&libraries=services"></script>
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script>
+   <%--채연 --%>
+<!--    <script type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70&libraries=services"></script> -->
    <script>
       // 마커를 담을 배열입니다
       var markers = [];
@@ -266,8 +266,14 @@
                //위도경도 값 서블릿에 넘기기
                kakao.maps.event.addListener(marker, 'click', function() {        
                      //alert(placePosition.La + "," + placePosition.Ma);
-                     $("#host_lat").val(placePosition.La);
-                     $("#host_lon").val(placePosition.Ma);
+                     //위도
+                     $("#host_lat").val(placePosition.Ma);
+                     //경도
+                     $("#host_lon").val(placePosition.La);
+                     //위도
+                     $("#member_lat").val(placePosition.Ma);
+                     //경도
+                     $("#member_lon").val(placePosition.La);
                      $("#host_place").val(title);
                      
                });
@@ -316,6 +322,11 @@
             $("#host_lat").val(places.x);
             $("#host_lon").val(places.y);
             $("#host_place").val(places.place_name);
+            //위도
+            $("#member_lat").val(placePosition.Ma);
+            //경도
+            $("#member_lon").val(placePosition.La);
+            $("#host_place").val(title);
          };
          return el;
       }
@@ -388,13 +399,5 @@
       }
    </script>
 
-
-
-   <form id="aa" action="FindDeparture" method="post">
-      <input type="text" name="location" id="location" value=""> 
-       <input type="submit" value="수정하기">
-   </form>
-   <script>
-</script>
 </body>
 </html>

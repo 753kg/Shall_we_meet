@@ -14,12 +14,6 @@
     <link rel="stylesheet" href="../frontDesign/css/magnific-popup.css">
     <link rel="stylesheet" href="../frontDesign/css/flaticon.css">
     <link rel="stylesheet" href="../frontDesign/css/style.css">
-    <style>
-    #dropdown-menu25{
-    font-family: 'IBMPlexSansKR-Regular';
-    font-size: 12.5px;
-    }
-    </style>
 </head>
 
 <body>
@@ -67,13 +61,13 @@
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">약속</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" id="dropdown-menu25" href="../makeplan/makePlan.jsp" >새 약속 만들기</a>
-                <a class="dropdown-item" id="dropdown-menu25" href="../makeplan/PlanSelectServlet">내 약속 보기</a>
+              	<a class="dropdown-item" href="../makeplan/makePlan.jsp" >새 약속 만들기</a>
+                <a class="dropdown-item" href="../makeplan/PlanSelectServlet">내 약속 보기</a>
 
               </div>
             </li>
 	          <li class="nav-item"><a href="#" class="nav-link">날짜 입력하기</a></li>
-	          <li class="nav-item"><a href="../makeplan/SelectLocationByMember.jsp" class="nav-link">출발지 입력하기</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">출발지 입력하기</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -134,18 +128,16 @@
     					</div>
     					<div class="text">
     						<h2>we are</h2>
-								<a href="https://github.com/753kg"><p style="color:black;"><span class="fa fa-instagram"></span> Hyunbin (@been__y)</p></a>
-								<a href="https://github.com/753kg"><p style="color:black;"><span class="fa fa-github"></span> Chaeyeon (@753kg)</p></a>
-								<a href="https://www.instagram.com/kxxyxyxxn/"><p style="color:black;"><span class="fa fa-instagram"></span> Youyeon (@kxxyxyxxn)</p></a>
-								<a href="https://github.com/e-juhee"><p style="color:black;"><span class="fa fa-github"></span> Juhee (@e-juhee)</p></a>
+    						<p>Hyunbin</p>
+								<p>Chaeyeon</p>
+								<p>Youyeon</p>
+								<a href="https://www.instagram.com/zzzo_ohi/"><p><span class="fa fa-instagram"></span> Juhee (@zzzo_ohi)</p></a>
     					</div>
     				</div>
     			</div>
     		</div>
     	</div>
     </section>
-    
-
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

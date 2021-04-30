@@ -1,7 +1,6 @@
 package shallWe.Controller;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +14,8 @@ import shallWe.Service.ActivityService;
 import shallWe.VO.ActivityVO;
 import shallWe.VO.CafeVO;
 import shallWe.VO.RestaurantVO;
+
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class AcivitySelect �ȳ�dd�ƿ�
@@ -30,13 +31,20 @@ public class AcivitySelectServlet extends HttpServlet {
 		List<RestaurantVO> rlist = service.selectRestaurantByLocationName(location_name);
 		List<CafeVO> clist = service.selectCafeByLocationName(location_name);
 		List<ActivityVO> alist = service.selectActivityByLocationName(location_name);
-		request.setAttribute("rlist", rlist);
-		request.setAttribute("clist", clist);
-		request.setAttribute("alist", alist);
+		
+		Gson gson = new Gson();
+		String json_rlist = gson.toJson(rlist);
+		String json_clist = gson.toJson(clist);
+		String json_alist = gson.toJson(alist);
+		request.setAttribute("rlist", json_rlist);
+		request.setAttribute("clist", json_clist);
+		request.setAttribute("alist", json_alist);
 
 		request.setAttribute("location_name", location_name);
-		RequestDispatcher rd = request.getRequestDispatcher("retrieveActivityMain.jsp");
+		//RequestDispatcher rd = request.getRequestDispatcher("retrieveActivityMain.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("paginationTest.jsp");
 		rd.forward(request, response);
+		
 	}
 
 	/**

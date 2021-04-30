@@ -2,13 +2,13 @@ package shallWe.VO;
 
 public class MemberPlanVO {
 	String member_id;
-	int plan_id;
+	String plan_id;
 	double lat;
 	double lon;
 	
 	public MemberPlanVO() {}
 
-	public MemberPlanVO(String member_id, int plan_id, double lat, double lon) {
+	public MemberPlanVO(String member_id, String plan_id, double lat, double lon) {
 		super();
 		this.member_id = member_id;
 		this.plan_id = plan_id;
@@ -24,11 +24,11 @@ public class MemberPlanVO {
 		this.member_id = member_id;
 	}
 
-	public int getPlan_id() {
+	public String getPlan_id() {
 		return plan_id;
 	}
 
-	public void setPlan_id(int plan_id) {
+	public void setPlan_id(String plan_id) {
 		this.plan_id = plan_id;
 	}
 

@@ -2,16 +2,19 @@ package shallWe.Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import shallWe.Service.DateSelect;
 import shallWe.Service.MemberPlanService;
 import shallWe.Service.PlanService;
 
@@ -24,23 +27,29 @@ public class MakeplanServlet extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("makePlan.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("makePlan.jsp");
+		rd.forward(request, response);
+		//response.sendRedirect("makePlan.jsp");
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String host_id = request.getParameter("host_id");
+		String host_id = request.getParameter("host_id");						
 		String plan_name = request.getParameter("plan_name");
-		int numbers = Integer.parseInt(request.getParameter("membercount"));
-		String host_date = request.getParameter("host_date");
-		String host_place = request.getParameter("host_place");
-
-		String host_lat = request.getParameter("host_lat");
-		String host_lon = request.getParameter("host_lon");
-		System.out.println(System.currentTimeMillis());
-
-		String plan_id = host_id + System.currentTimeMillis();
+		int numbers = Integer.parseInt(request.getParameter("membercount"));	// ÀÎ¿ø¼ö
+		String plan_id = host_id + System.currentTimeMillis();					// plan id »ı¼º
 		
+		// È£½ºÆ®°¡ °í¸¥ Àå¼Ò ÀÌ¸§, À§µµ, °æµµ
+		String host_place = request.getParameter("host_place");
+		String lat = request.getParameter("host_lat");
+		String lon = request.getParameter("host_lon");
+		double host_lat = Double.parseDouble(lat.equals("")?"0.0":lat);
+		double host_lon = Double.parseDouble(lon.equals("")?"0.0":lon);
+		
+		// È£½ºÆ®°¡ °í¸¥ ³¯Â¥
+		String[] host_dates = request.getParameter("host_dates").split(",");
+		
+		// ÃÊ´ëÇÑ Ä£±¸ ¸®½ºÆ®
 		List<String> friend_id_list = new ArrayList<>();
 		Enumeration<String> e = request.getParameterNames();
 		while(e.hasMoreElements()) {
@@ -50,59 +59,30 @@ public class MakeplanServlet extends HttpServlet {
 				friend_id_list.add(value);
 			}
 		}
-
-		/*
-		// ë¬´ì¡°ê±´ plans, members_plans ì…ë ¥
+		
+		
+		// ¹«Á¶°Ç plans, members_plans(Ä£±¸) ÀÔ·Â
+		// 1. plans inert
 		PlanService ps = new PlanService();
 		ps.insertPlan(plan_id, plan_name, host_id, numbers);
-		MemberPlanService mps = new MemberPlanService();
 		
+		// 2. members_plans Ä£±¸
+		MemberPlanService mps = new MemberPlanService();
 		for(String friend_id : friend_id_list) {
 			mps.insertMemberPlan(plan_id, friend_id, 0.0, 0.0);
 		}
 		
-		// host?????
-		//mps.insertMemberPlan(plan_id, host_id, lat, lon)
+		// 3. host --> members_plans
+		// Àå¼Ò ¾ÈÁ¤ÇÏ¸é 0.0À¸·Î µé¾î°¡°í Àå¼Ò Á¤ÇÏ¸é À§µµ °æµµ °ªÀÌ µé¾î°¨.
+		mps.insertMemberPlan(plan_id, host_id, host_lat, host_lon);
 		
-		// ë‚ ì§œ ì„ íƒ ì•ˆí–ˆìœ¼ë©´ (ì¥ì†Œë§Œ ì„ íƒ)
-		if(host_date.equals("")) {
-			// members_plansì— lat, lon ì…ë ¥
-			System.out.println("host_date: " + host_date);
-		} 
-		
-		// ì¥ì†Œ ì„ íƒ ì•ˆí–ˆìœ¼ë©´ (ë‚ ì§œë§Œ ì„ íƒ)
-		if(host_place.equals("")) {
-			// date_optionsì— plan_id, host_date ì…ë ¥
+		// 4. ³¯Â¥ ¼±ÅÃ Çß´Ù¸é --> date_options¿¡ ³¯Â¥µé insert
+		DateSelect ds = new DateSelect();
+		if(!host_dates[0].equals("")) {
+			for(String date:host_dates) {
+				ds.insertMasterDate(plan_id, date);
+			}
 		}
-		
-		else {
-			System.out.println("host_date ì—†ìŒ");
-		}
-		if(!host_place.equals("")) {
-			System.out.println("host_place: " + host_place);			
-		} else {
-			System.out.println("host_place ì—†ìŒ");
-		}
-		System.out.println("host_id: " + host_id);
-		System.out.println("plan_name: " + plan_name);
-		System.out.println("membercount: " + numbers);
-		
-		for(String f:friend_id_list) {
-			System.out.println("friends: " + f);
-		}
-		*/
-		// host_id, plan_name, membercount --> plans
-		// host_date --> date_options
-		// host_id, friends --> members_plans
-		
-		// members_plansì— insertí•˜ë ¤ë©´  plan_idê°€ í•„ìš”.
-		// plan_idë¥¼ ì–´ë–»ê²Œ ê°€ì ¸ì˜¤ì§€..? 
-		// í”„ë¡œì‹œì € ì¨ì•¼í•˜ë‚˜
-		/*
-		
-		System.out.println("host_date: " + host_date);
-		System.out.println("host_place: " + host_place);
-		*/
 		
 		response.sendRedirect("PlanSelectServlet");
 	}
