@@ -1,0 +1,27 @@
+div.activities {
+	position: relative;
+	display: inline-block;
+	width: 250px;
+}
+
+.activities img {
+	/* 식당,카페 사진*/
+	position: relative;
+	width: 100%;
+}
+
+.activities .actName{
+	/* 식당,카페,놀거리 이름 */
+}
+
+.activities .mainAct{
+	/* 식당,카페,놀거리 메인 푸드, 메인 액티비티 */
+}
+
+.activities .actAddr{
+	/* 식당,카페 전체 주소 */
+}
+
+.activities .actLike{
+	/* 식당,카페 좋아요 수 */
+}
