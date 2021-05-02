@@ -92,10 +92,11 @@ public class PagingVO {
 	public void paging() {
 		startRowNum = (currentPage - 1) * displayData + 1;
 		endRowNum = currentPage * displayData;
-		
+		/*
 		endPage = ((currentPage + (displayPage - 1)) / displayPage) * displayPage;
 		startPage = endPage - (displayPage - 1);
-		
+		*/
+		/*
 		// 마지막 페이지
 		totalPage = totalData / displayData;
 		if(totalData % displayData > 0) totalPage++;
@@ -108,5 +109,6 @@ public class PagingVO {
 		}
 		
 		prev = (startPage == 1) ? false : true;
+		*/
 	}
 }

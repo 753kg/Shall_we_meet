@@ -42,20 +42,19 @@ public class ActivityService {
 	}
 	
 	// ∆‰¿Ã¬°
-	public List<RestaurantVO> selectRestByLoc(String location_name, int currentPage, PagingVO paging) {
-		return dao.selectRestByLoc(location_name, currentPage, paging);
+	public List<RestaurantVO> selectRestByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		return dao.selectRestByLoc(location_name, currentPage, startNum, endNum);
 	}
 	
-	public List<CafeVO> selectCafeByLoc(String location_name, int currentPage, PagingVO paging) {
-		return dao.selectCafeByLoc(location_name, currentPage, paging);
+	public List<CafeVO> selectCafeByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		return dao.selectCafeByLoc(location_name, currentPage, startNum, endNum);
 	}
 	
-	public List<ActivityVO> selectActByLoc(String location_name, int currentPage, PagingVO paging) {
-		return dao.selectActByLoc(location_name, currentPage, paging);
+	public List<ActivityVO> selectActByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		return dao.selectActByLoc(location_name, currentPage, startNum, endNum);
 	}
 	
-	public List<SafetyRestaurantVO> selectSafetyByLoc(String location_name, int currentPage, PagingVO paging) {
-		System.out.println(dao.selectSafetyByLoc(location_name, currentPage, paging));
-		return dao.selectSafetyByLoc(location_name, currentPage, paging);
+	public List<SafetyRestaurantVO> selectSafetyByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		return dao.selectSafetyByLoc(location_name, currentPage, startNum, endNum);
 	}
 }

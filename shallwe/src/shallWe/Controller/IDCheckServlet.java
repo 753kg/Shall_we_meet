@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import shallWe.Service.MemberService;
 import shallWe.VO.MemberVO;
 
-/** 회원가입 & 친구초대 시 아이디 중복 체크
+/** �쉶�썝媛��엯 & 移쒓뎄珥덈� �떆 �븘�씠�뵒 以묐났 泥댄겕
  * Servlet implementation class IDCheckServlet
  */
 @WebServlet("/login/IDCheck")
@@ -20,20 +20,17 @@ public class IDCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String register_id = request.getParameter("register_id");
+		String member_id = request.getParameter("member_id");
 		
 		MemberService service = new MemberService();
-		MemberVO register_mem = service.IDChk(register_id);
-		System.out.println("idcheck: " + register_mem);
+		MemberVO mem = service.IDChk(member_id);
+		System.out.println("idcheck: " + mem);
 		
 		PrintWriter out = response.getWriter();
-		if(register_mem == null) {
+		if(mem == null) {
 			out.print(0);	// 중복X
 		} else {
 			out.print(1);	// 중복O
 		}
-		
 	}
-
-
 }

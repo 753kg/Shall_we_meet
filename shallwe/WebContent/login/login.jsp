@@ -24,30 +24,24 @@
 	</div>
 	
 	<script>
-		// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 		$("#login_submit").click(function() {
 			var formData = $('#login_form').serialize();
 			$.ajax({
-				// 아이디 체크하는 서블릿??
 				url : 'Login',
 				type : 'post',
 				cache: false,
 				data: formData,
 				success : function(data) {
-					console.log("1 = 중복o / 0 = 중복x : " + data);
-
 					if (data == 1) {
-						// 1 : 아이디가 중복되는 문구
 						location.href = "../mainView/main.jsp";
 					} else {
-						
-						if(memberid == ""){
-							$("#id_check").text("아이디를 입력하세요");
-							$("#id_check").css("color", "red");
-						} else {
-							$("#id_check").text("아이디나 비밀번호가 잘못되었습니다.");
-							$("#id_check").css("color", "red");
-						}
+							if(memberid == ""){
+								$("#id_check").text("아이디를 입력하세요");
+								$("#id_check").css("color", "red");
+							} else {
+								$("#id_check").text("아이디나 비밀번호가 잘못되었습니다.");
+								$("#id_check").css("color", "red");
+							}
 					}
 				},
 				error : function() {

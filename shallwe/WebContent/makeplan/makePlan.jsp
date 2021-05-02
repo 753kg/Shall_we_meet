@@ -37,10 +37,8 @@
 			<label for="plan_name"></label>
 			<input type="text" id="plan_name" name="plan_name" placeholder="약속이름">
 		</div>
-		<%-- 장소 버튼 누르면 사라짐 --%>
 		<div id="select_date">
 		</div>
-		<%-- 날짜 버튼 누르면 사라짐 --%>
 		<div id="select_place">
 			<label for="host_place"></label>
 			<input type="text" id="host_place" name="host_place" placeholder="장소선택">
@@ -48,28 +46,25 @@
 		<button type="button" id="btn_invite">친구초대</button>
 		<div id="friend_list">
 		</div>
-		<%-- hidden 으로 보내기 --%>
 		<div id="hiddenlist">
 			<input type="hidden" id="host_id" name="host_id" value="${memberid }">
 			<input type="hidden" id="host_lat" name="host_lat">
 			<input type="hidden" id="host_lon" name="host_lon">
 			<input type="hidden" id="host_dates" name="host_dates">
-			
+			<input type="hidden" id="membercount" name="membercount">
 		</div>
 		<button type="button" id="btn_submit">완료</button>
-		<!-- <input type="submit" value="완료"> -->
  </form>
-	<div id ="ajaxTest"></div>
+	<div id ="map_area"></div>
 	<script>
 		var arr = [];
+		btn_submit.onclick = function(){
+			membercount.value = count;
+			host_dates.value = arr.toString();
+			makePlanForm.submit();
+		}
 		
-		btn_date.click();
-		
-		$("#btn_date").on("click", function() {
-			document.getElementById("select_date").style.display = "block";
-			document.getElementById("select_place").style.display = "none";
-			document.getElementById("ajaxTest").style.display = "none";
-			
+		function dateAJAX(){
 			$.ajax({
 				url : "../date/masterSelectDate.jsp",
 				type : "get",
@@ -79,53 +74,46 @@
 				error : function() {
 				}
 			});
+		}
+		
+		function mapAJAX(){
+			$.ajax({
+				url : "locationRetrieveBySearch.jsp",
+				type : "get",
+				success : function(responsedata) {
+					$("#map_area").html(responsedata);
+				},
+				error : function() {
+				}
+			});
+		}
+		
+		$("#btn_date").on("click", function() {
+			$("#select_date").css("display", "block");
+			$("#select_place").css("display", "none");
+			$("#map_area").css("display", "none");
+			dateAJAX();
 		});
 		
 		$("#btn_place").on("click", function() {
-			document.getElementById("select_date").style.display = "none";
-			document.getElementById("select_place").style.display = "block";
-			document.getElementById("ajaxTest").style.display = "block";
-			
-			$.ajax({
-				url : "locationRetrieveBySearch.jsp",
-				type : "get",
-				success : function(responsedata) {
-					$("#ajaxTest").html(responsedata);
-				},
-				error : function() {
-				}
-			});
+			$("#select_date").css("display", "none");
+			$("#select_place").css("display", "block");
+			$("#map_area").css("display", "block");
+			mapAJAX();
 		});
 		
 		$("#btn_datePlace").on("click", function() {
-			document.getElementById("select_date").style.display = "block";
-			document.getElementById("select_place").style.display = "block";
-			document.getElementById("ajaxTest").style.display = "block";
-
-			$.ajax({
-				url : "locationRetrieveBySearch.jsp",
-				type : "get",
-				success : function(responsedata) {
-					$("#ajaxTest").html(responsedata);
-				},
-				error : function() {
-				}
-			});
-
-			$.ajax({
-				url : "../date/masterSelectDate.jsp",
-				type : "get",
-				success : function(responsedata) {
-					$("#select_date").html(responsedata);
-				},
-				error : function() {
-				}
-			});
+			$("#select_date").css("display", "block");
+			$("#select_place").css("display", "block");
+			$("#map_area").css("display", "block");
+			dateAJAX();
+			mapAJAX();
 		});
+	
+
 
 		btn_invite.onclick = inviteFriend;
-		btn_submit.onclick = submitForm;
-
+		
 		var flist = document.getElementById("friend_list");
 		var count = 1;
 		var i = 1;
@@ -133,7 +121,7 @@
 			var atr = "friend" + i;
 
 			var newDIV = document.createElement("div");
-			newDIV.className = atr;
+			newDIV.className = "friends";
 
 			var newInput = document.createElement("input");
 			newInput.type = "text";
@@ -167,54 +155,32 @@
 			console.log(count);
 		}
 
-		function submitForm() {
-			var cdiv = document.createElement("div");
-			var cinput = document.createElement("input");
-			cinput.type = "hidden";
-			cinput.name = "membercount";
-			cinput.value = count;
-			cdiv.appendChild(cinput);
-			makePlanForm.appendChild(cdiv);
-
-			//console.log(arr === null);
-			//console.log(arr.toString());
-			host_dates.value = arr.toString();
-
-			makePlanForm.submit();
-		}
+		
 
 		function idCheck() {
-			var register_id = $(this).val();
+			var member_id = $(this).val();
 			var input = $(this);
-			console.log("this: " + register_id);
-			console.log($(this).siblings(".id_check").text());
-
 			$.ajax({
-						// 아이디 체크하는 서블릿
-						url : '../login/IDCheck?register_id=' + register_id,
+						url : '../login/IDCheck?member_id=' + member_id,
 						type : 'get',
 						success : function(data) {
-							console.log("1 = 중복o / 0 = 중복x : " + data);
-
 							if (data == 1) { // 1 : 아이디가 존재하면
 								$(input).siblings(".id_check").text("초대가능");
 								$(input).siblings(".id_check").css("color", "green");
 							} else {
-
-								if (register_id == "") {
-									$(input).siblings(".id_check").text("친구아이디를 입력하세요");
-									$(input).siblings(".id_check").css("color","red");
-								} else {
-									$(input).siblings(".id_check").text("존재하지 않는 아이디입니다.");
-									$(input).siblings(".id_check").css("color","red");
-								}
+									if (member_id == "") {
+										$(input).siblings(".id_check").text("친구아이디를 입력하세요");
+										$(input).siblings(".id_check").css("color","red");
+									} else {
+										$(input).siblings(".id_check").text("존재하지 않는 아이디입니다.");
+										$(input).siblings(".id_check").css("color","red");
+									}
 							}
 						},
 						error : function() {
-							console.log("실패");
+							console.log("친구 초대 실패");
 						}
 					});
-
 		}
 	</script>
 </body>

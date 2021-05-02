@@ -136,13 +136,10 @@ public class ActivityDAO {
 		s.setFull_address(rs.getString("full_address"));
 		s.setLat(rs.getDouble("lat"));
 		s.setLon(rs.getDouble("lon"));
-		System.out.println("makeSafety:" + s);
 		return s;
 	}
 	
-	public List<RestaurantVO> selectRestByLoc(String location_name, int currentPage, PagingVO paging) {
-		int startNum = paging.getStartRowNum();
-		int endNum = paging.getEndRowNum();
+	public List<RestaurantVO> selectRestByLoc(String location_name, int currentPage, int startNum, int endNum) {
 		
 		List<RestaurantVO> rlist = new ArrayList<>();
 		String sql = 
@@ -177,9 +174,7 @@ public class ActivityDAO {
 		return rlist;
 	}
 	
-	public List<CafeVO> selectCafeByLoc(String location_name, int currentPage, PagingVO paging) {
-		int startNum = paging.getStartRowNum();
-		int endNum = paging.getEndRowNum();
+	public List<CafeVO> selectCafeByLoc(String location_name, int currentPage, int startNum, int endNum) {
 		
 		List<CafeVO> clist = new ArrayList<>();
 		String sql = 
@@ -214,9 +209,7 @@ public class ActivityDAO {
 		return clist;
 	}
 	
-	public List<ActivityVO> selectActByLoc(String location_name, int currentPage, PagingVO paging) {
-		int startNum = paging.getStartRowNum();
-		int endNum = paging.getEndRowNum();
+	public List<ActivityVO> selectActByLoc(String location_name, int currentPage, int startNum, int endNum) {
 		
 		List<ActivityVO> alist = new ArrayList<>();
 		String sql = 
@@ -250,11 +243,7 @@ public class ActivityDAO {
 		return alist;
 	}
 	
-	public List<SafetyRestaurantVO> selectSafetyByLoc(String location_name, int currentPage, PagingVO paging) {
-		int startNum = paging.getStartRowNum();
-		int endNum = paging.getEndRowNum();
-		System.out.println("safety startnum: " + startNum);
-		System.out.println("safety endNum: " + endNum);
+	public List<SafetyRestaurantVO> selectSafetyByLoc(String location_name, int currentPage, int startNum, int endNum) {
 		
 		List<SafetyRestaurantVO> slist = new ArrayList<>();
 		String sql = 
@@ -272,7 +261,6 @@ public class ActivityDAO {
 		ResultSet rs = null;
 
 		try {
-			System.out.println("¿Ö¾ÈµÅ");
 			st = conn.prepareStatement(sql);
 			st.setString(1, location_name);
 			st.setInt(2, startNum);
@@ -280,7 +268,6 @@ public class ActivityDAO {
 			rs = st.executeQuery();
 			while (rs.next()) {
 				slist.add(makeSafety(rs));
-				System.out.println(rs.getString("restaurant_name"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -375,7 +362,6 @@ public class ActivityDAO {
 	
 	public int countSafetyByLoc(String location_name) {
 		int result = 0;
-		System.out.println("countSafetyByLoc, location_name: " + location_name);
 		String sql = 
 				" select count(*) from SAFETY_RESTAURANTS" +
 				" where location_name = (select village" +
@@ -391,7 +377,6 @@ public class ActivityDAO {
 			st.setString(1, location_name);
 			rs = st.executeQuery();
 			while (rs.next()) {
-				System.out.println("rs.getInt(1): " + rs.getInt(1));
 				result = rs.getInt(1);
 			}
 		} catch (SQLException e) {

@@ -42,40 +42,38 @@
     </div>
    
 <script>
-
-		
 		$("#restaurants").click(function(){
-			var currentPage = ${currentPage};
-			var totalPage = ${r_total_page};
-			var location_name = '${location_name}';
-			showActivity(currentPage, totalPage, location_name, "r");
+			showActivity(1, '${location_name}', "r");
 		});
 		
 		$("#cafes").click(function(){
-			var currentPage = ${currentPage};
-			var totalPage = ${c_total_page};
-			var location_name = '${location_name}';
-			showActivity(currentPage, totalPage, location_name, "c");
+			showActivity(1, '${location_name}', "c");
 		});
 		
 		$("#activities").click(function(){
-			var currentPage = ${currentPage};
-			var totalPage = ${a_total_page};
-			var location_name = '${location_name}';
-			showActivity(currentPage, totalPage, location_name, "a");
+			showActivity(1, '${location_name}', "a");
 		});
 		
 		$("#safety").click(function(){
-			var currentPage = ${currentPage};
-			var totalPage = ${s_total_page};
-			var location_name = '${location_name}';
-			showActivity(currentPage, totalPage, location_name, "s");
+			showActivity(1, '${location_name}', "s");
 		});
 		
-		function showActivity(currentPage, totalPage, location_name, type){
+		function showActivity(currentPage, location_name, type){
+			var totalPage = 0;
+			$.ajax({
+    			url : "../activityView/CountPage?type=" + type + "&location_name=" + location_name,
+    			type : "get",
+    			async: false,
+    			success : function(data) {
+    				totalPage = data;
+    			},
+    			error : function() {
+    				console.log("paginationTest >> ajax error")
+    			}
+    	});
+			alert('type: ' + type + ' totalPage: ' + totalPage);
 			btnCheck(currentPage, totalPage);
 			getNPage(location_name, currentPage, type);
-		
 			
 			btn_next.onclick = function(){
 				currentPage++;
@@ -92,20 +90,18 @@
 			};
 			
 			function btnCheck(page, finalPage){
-				$("#btn_prev").prop('disabled', false);
-				if(page <= 1){
-					$("#btn_prev").prop('disabled', true);
-				}
-				$("#btn_next").prop('disabled', false);
-				if(page >= finalPage){
-					$("#btn_next").prop('disabled', true);
-				}
+				btn_prev.disabled = false;
+				if(page <= 1) btn_prev.disabled = true;
+				
+				btn_next.disabled = false;
+				if(page >= finalPage) btn_next.disabled = true;
 			}
 			
 			function getNPage(location_name, page, type){
 				$.ajax({
-	    			url : "../activityView/SelectNPage?type=" + type + "&location_name=" + location_name + "&page=" + page,
+	    			url : "../activityView/SelectNPage",
 	    			type : "get",
+	    			data : { "type": type, "location_name": location_name, "page": page },
 	    			success : function(responsedata) {
 	    				
 	    				$("#view").html(responsedata);

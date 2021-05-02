@@ -27,21 +27,16 @@ public class LoginServlet extends HttpServlet {
 		
 		MemberService service = new MemberService();
 		MemberVO m = service.loginChk(memberid, memberpw);
+		
 		PrintWriter out = response.getWriter();
-		
-		
 		if(m == null) {
-			out.print(0);	// 일치하는 회원이 없음
+			out.print(0);
 		}
 		else {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberid", m.getMember_id());
 			session.setAttribute("membername", m.getName());
 			out.print(1);
-			
-			//response.sendRedirect("../mainView/main.jsp");
 		}
-		
 	}
-
 }

@@ -43,11 +43,6 @@ public class RegisterServlet extends HttpServlet {
 		
 		MemberService service = new MemberService();
 		int result = service.insertMember(new_mem);
-		String message = "회원가입 성공";
-		if(result == 0) {
-			message = "회원가입 실패";
-		}
-		System.out.println(message);
 		response.sendRedirect("../mainView/main.jsp");
 	}
 

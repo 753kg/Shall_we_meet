@@ -26,7 +26,7 @@
          <p>fixed_date : ${plan.fixed_date }</p>
          <p>hotplace_name : ${plan.hotplace_name }</p>
          <p>numbers : ${plan.numbers }</p>
-         <button type="button" id="test" onclick="goToSelectLocationbyMember('${plan.plan_id }')">장소 선택하기</button>
+         <button type="button" id="selectLoc" onclick="goToSelectLocationbyMember('${plan.plan_id }')">장소 선택하기</button>
          <button type="button" id="middle" onclick="goToCalculator('${plan.plan_id }')">중간거리 확인!</button>
          <button type="button" id="selectDate" onclick="goToSelectDatebyMember('${plan.plan_id }')">날짜 선택하기</button>
          <button type="button" id="fixDate" onclick="goToFixDate('${plan.plan_id }')">날짜 확정!!!</button>
@@ -35,32 +35,11 @@
    
    
    <button type="button" id="btn_makePlan">약속만들기</button>
-   <hr>
-   <form id="hlist" action="AcivitySelect">
-   </form>
    
    <script type="text/javascript">
-      btn_makePlan.onclick = toMakePlanPage;
-      
-      
-      hotplaces = ['홍대', '이태원', '잠실'];
-      makeBtn(hotplaces);
-      
-      function toMakePlanPage(){
+      btn_makePlan.onclick = function(){
          location.href = "Makeplan";
-      }
-      
-      function makeBtn(hosplaces){
-         
-       for(let i=0; i<hotplaces.length; i++){
-            var atr = hotplaces[i];
-            var newBtn = document.createElement("input");
-            newBtn.type = "submit";
-            newBtn.value = atr;
-            newBtn.name = "location_name";
-            hlist.appendChild(newBtn);
-         }
-      }
+      };
       function goToSelectLocationbyMember(planid) {
          location.href ="FindDeparture?plan_id="+planid;
       }

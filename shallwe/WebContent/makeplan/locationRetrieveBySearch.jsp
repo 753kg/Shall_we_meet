@@ -318,7 +318,6 @@
          el.className = 'item';
          
          el.onclick = function(){
-            //alert(places.x + "," + places.y);
             $("#host_lat").val(places.x);
             $("#host_lon").val(places.y);
             $("#host_place").val(places.place_name);
