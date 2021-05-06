@@ -22,7 +22,13 @@
 					</div>
 					<div class="col-md-6 d-flex justify-content-md-end">
 		        <div class="reg">
-		        	<p class="mb-0"><a href="../login/register.jsp" class="mr-2">Sign Up</a> <a href="../login/login.jsp">LogIn</a></p>
+		        	<p class="mb-0"><a href="../login/register.jsp" class="mr-2">Sign Up</a>
+		        	<% String memberid = (String) session.getAttribute("memberid"); %>
+					<% if(memberid == null) {%>
+						<a href="../login/login.jsp">LogIn</a>
+					<%} else { %>
+						<a href="../Logout">LogOut</a></p>
+					<%}%>
 		        </div>
 					</div>
 				</div>
@@ -45,11 +51,11 @@
               <div class="dropdown-menu" aria-labelledby="dropdown04" style="font-family: 'IBMPlexSansKR-Regular';
     font-size: 12.5px;">
               	<a class="dropdown-item" href="../makeplan/makePlan.jsp" >새 약속 만들기</a>
-                <a class="dropdown-item" href="#">내 약속 보기</a>
+                <a class="dropdown-item" href="../makeplan/PlanSelectServlet">내 약속 보기</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="#" class="nav-link">날짜 입력하기</a></li>
-	          <li class="nav-item"><a href="../makeplan/SelectLocationByMember.jsp" class="nav-link">출발지 입력하기</a></li>
+	          <li class="nav-item"><a href="../makeplan/PlanSelectServlet" class="nav-link">날짜 입력하기</a></li>
+	          <li class="nav-item"><a href="../makeplan/PlanSelectServlet" class="nav-link">출발지 입력하기</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -62,13 +68,11 @@
         <div class="row no-gutters slider-text align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate mb-5 text-center">
           	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="../mainView/main.jsp">Home <i class="fa fa-chevron-right"></i></a></span> <span>약속 <i class="fa fa-chevron-right"></i></span></p>
-            <img class="header-title25" src ="../frontDesign/imageSource/새약속만들기.png"> 
+            <img class="header-title25" src ="../frontDesign/imageSource/<%=pageName%>.png"/> 
           </div>
         </div>
       </div>
     </section>
-    
-
-  
+ 
 </body>
 </html>

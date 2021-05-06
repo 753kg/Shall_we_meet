@@ -27,32 +27,33 @@ public class AcivitySelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String location_name = request.getParameter("location_name");
 		
-		ActivityService service = new ActivityService();
-		List<RestaurantVO> rlist = service.selectRestaurantByLocationName(location_name);
-		List<CafeVO> clist = service.selectCafeByLocationName(location_name);
-		List<ActivityVO> alist = service.selectActivityByLocationName(location_name);
+		int displayData = 5;		// 한 페이지 당 보여질 데이터 갯수
 		
-		Gson gson = new Gson();
-		String json_rlist = gson.toJson(rlist);
-		String json_clist = gson.toJson(clist);
-		String json_alist = gson.toJson(alist);
-		request.setAttribute("rlist", json_rlist);
-		request.setAttribute("clist", json_clist);
-		request.setAttribute("alist", json_alist);
-
+		ActivityService service = new ActivityService();
+		int r_data_total = service.countRestByLoc(location_name);
+		int r_total_page = r_data_total / displayData;
+		if(r_data_total % displayData > 0) r_total_page++;
+		
+		int c_data_total = service.countCafeByLoc(location_name);
+		int c_total_page = c_data_total / displayData;
+		if(c_data_total % displayData > 0) c_total_page++;
+		
+		int a_data_total = service.countActByLoc(location_name);
+		int a_total_page = a_data_total / displayData;
+		if(a_data_total % displayData > 0) a_total_page++;
+		
+		int s_data_total = service.countSafetyByLoc(location_name);
+		int s_total_page = s_data_total / displayData;
+		if(s_data_total % displayData > 0) s_total_page++;
+		
+		//request.setAttribute("currentPage", 1);
+		request.setAttribute("r_total_page", r_total_page);
+		request.setAttribute("c_total_page", c_total_page);
+		request.setAttribute("a_total_page", a_total_page);
+		request.setAttribute("s_total_page", s_total_page);
 		request.setAttribute("location_name", location_name);
-		//RequestDispatcher rd = request.getRequestDispatcher("retrieveActivityMain.jsp");
+		
 		RequestDispatcher rd = request.getRequestDispatcher("paginationTest.jsp");
 		rd.forward(request, response);
-		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

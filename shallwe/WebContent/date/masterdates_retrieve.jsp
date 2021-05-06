@@ -13,7 +13,66 @@
 <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>Insert title here</title>
+ 
+<title>날짜 입력하기</title>
+<style>
+
+ @font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'LotteMartHappy';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff');
+}
+body{
+font-family: 'IBMPlexSansKR-Regular';
+position:absolute;
+left:50%;
+transform: translate( -50%, -50% );
+top:10%;
+text-align: center;
+}
+#calendar{
+font-family: 'IBMPlexSansKR-Regular';
+}
+#date-btn{
+font-family: 'IBMPlexSansKR-Regular';
+position:absolute;
+left:110px;
+top:340px;
+background-color:  rgb(255,220,104); /* Green */
+  border: none;
+  border-radius: 4px;
+  color: black;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#date-btn:hover {
+  background-color:rgb(39,39,39);
+  color: white;
+ 
+  font-family: 'IBMPlexSansKR-Regular';
+}
+p{
+font-weight: bold;
+font-family: 'IBMPlexSansKR-Regular';
+font-size: 20px;}
+#datepicker{
+position: absolute;
+left:50px;
+}
+</style>
 </head>
 <script>
 var arr = [];
@@ -68,21 +127,23 @@ function call(planid){
 }
 </script>
 <body>
-<h3>가능하신 날짜를 방장이 선택한 날짜중에 골라주세요</h3>
+<div id="calendar">
+<p>달력에서 가능한 날짜를 하나씩 선택해주세요.</p>
   <c:forEach var="date_options" items="${hdall}"> 
   <!-- 	<td>${date_options.host_date}</td><br>-->
     <input type="hidden" name="dt" value="${fn:substring(date_options.host_date,0,10)}"/>
    </c:forEach>
 
 	<div class="input-group date form-group" id="datepicker">
-		<input type="text" class="form-control" id="Dates" name="Dates" placeholder="Select days" required /> 
+		<input type="text" class="form-control" id="Dates" name="Dates" placeholder="Select days" required style="visibility: hidden;"/> 
 			<span class="input-group-addon">
 			 <i class="glyphicon glyphicon-calendar"></i>
 			 <span class="count">
 			</span>
 		 </span>
 	</div>
-	 	<button onclick="call('${plan_id}');">확인</button> 
+	 	<button id="date-btn" onclick="call('${plan_id}');">날짜 입력 완료</button> 
+	 	</div>
 </body>
 <script type="text/javascript">
 

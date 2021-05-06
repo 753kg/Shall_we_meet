@@ -52,6 +52,13 @@ public class MemberPlanService {
 		return mpdao.updateMemberLocation(member_id, plan_id, lat, lon);
 
 	}
+	
+	
+	//멤버와 핫플레이스간에 거리계산
+	public double[] selectMemberLocation(String plan_id,String member_id) {
+		MemberPlanDAO mpdao = new MemberPlanDAO();
+		return mpdao.selectMemberLocation(plan_id, member_id);
+	}
 
 	//중간거리에서 가까운 핫플레이스 3개 String배열로 리턴
 	public String[] informMiddlePlace(String plan_id) {
@@ -135,6 +142,16 @@ public class MemberPlanService {
 	// This function converts radians to decimal degrees
 	private double rad2deg(double rad) {
 		return (rad * 180 / Math.PI);
+	}
+
+	public String[] calculateMemberDistance(double[] memberLocation, List<HotplaceVO> hotlist) {
+		String[] distance = new String[3];
+		for(int i = 0 ; i < 3 ; i++) {
+			double result = distance(memberLocation[0], memberLocation[1], 
+					hotlist.get(i).getLat(), hotlist.get(i).getLon(), "kilometer");
+			distance[i]=String.format("%.2f",result);
+		}
+		return distance;
 	}
 
 
