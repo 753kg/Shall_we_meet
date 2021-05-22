@@ -203,6 +203,7 @@ public class DateDAO {
          
          if(rs.next()) {
             dvo = new DateCountVO(rs.getString(1), rs.getString(2), planid);
+            System.out.println("DateDAO.selectCountNDate() dvo: " + dvo.toString());
          }
       } catch (SQLException e) {
          e.printStackTrace();

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!doctype html>
 <html lang="ko">
@@ -34,9 +36,15 @@
 	function call(){
 		location.href = "../masterSelectDate?dates="+arr.toString();
 	}
+	
 </script>
+<style>
+.ui-datepicker{width:300px;}
+
+</style>
 </head>
 <body>
+<p style="font-size: 18px;">가능한 날짜</p>
 	<div class="input-group date form-group" id="datepicker">
 			<span class="input-group-addon">
 			 <i class="glyphicon glyphicon-calendar"></i>

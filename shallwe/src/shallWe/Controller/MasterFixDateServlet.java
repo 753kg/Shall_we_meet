@@ -28,9 +28,8 @@ public class MasterFixDateServlet extends HttpServlet {
 		DateSelect service = new DateSelect();
 		try {
 			request.setAttribute("fdate", service.updateFixDate(fixdate, plan_id));
-			RequestDispatcher rd = 
-					request.getRequestDispatcher("makeplan/PlanSelectServlet");
-			rd.forward(request, response);
+			response.sendRedirect("/shallwe/makeplan/PlanSelectServlet");
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
