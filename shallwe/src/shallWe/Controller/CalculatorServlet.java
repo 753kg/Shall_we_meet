@@ -33,6 +33,8 @@ public class CalculatorServlet extends HttpServlet {
 		HotplaceService hps= new HotplaceService();
 		//get방식으로 plan_id를 받아옴
 		String plan_id = request.getParameter("plan_id");
+		
+		request.setAttribute("plan_id", plan_id);
 		//핫플레이스 이름 세가지 받아옴
 		String[] hotplace3 = mps.informMiddlePlace(plan_id);
 		

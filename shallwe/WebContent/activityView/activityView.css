@@ -1,0 +1,54 @@
+
+div.activities {
+	position: relative;
+	display: inline-block;
+	width: 250px;
+}
+
+.activities img {
+	/* 식당,카페 사진*/
+	position: relative;
+	width: 100%;
+}
+
+.activities .actName{
+	/* 식당,카페,놀거리 이름 */
+	text-align: center;
+	font-size:20px;
+	font-family: 'Wemakeprice-Bold';
+}
+
+.activities .mainAct{
+	/* 식당,카페,놀거리 메인 푸드, 메인 액티비티 */
+	font-family: 'IBMPlexSansKR-Regular';
+}
+
+.activities .actAddr{
+	/* 식당,카페 전체 주소 */
+	font-family: 'IBMPlexSansKR-Regular';
+}
+
+.activities .actLike{
+	/* 식당,카페 좋아요 수 */
+	font-family: 'Wemakeprice-Bold';
+	color: #7DC6B5;
+}
+
+@font-face {
+    font-family: 'Wemakeprice-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'Binggrae-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

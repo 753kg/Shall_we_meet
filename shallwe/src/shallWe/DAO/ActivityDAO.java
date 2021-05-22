@@ -11,6 +11,7 @@ import shallWe.Util.DBUtil;
 import shallWe.VO.ActivityVO;
 import shallWe.VO.CafeVO;
 import shallWe.VO.RestaurantVO;
+import shallWe.VO.SafetyRestaurantVO;
 
 public class ActivityDAO {
 	
@@ -124,5 +125,266 @@ public class ActivityDAO {
 		a.setLocation_name(rs.getString("location_name"));
 		a.setActivity_id(rs.getInt("activity_id"));
 		return a;
+	}
+	
+	public SafetyRestaurantVO makeSafety(ResultSet rs) throws SQLException {
+		SafetyRestaurantVO s = new SafetyRestaurantVO();
+		s.setRestaurant_id(rs.getInt("restaurant_id"));
+		s.setRestaurant_name(rs.getString("restaurant_name"));
+		s.setCategory(rs.getString("category"));
+		s.setFull_address(rs.getString("full_address"));
+		s.setLat(rs.getDouble("lat"));
+		s.setLon(rs.getDouble("lon"));
+		return s;
+	}
+	
+	public List<RestaurantVO> selectRestByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		
+		List<RestaurantVO> rlist = new ArrayList<>();
+		String sql = 
+				" select * " +
+				" from (select rownum as rnum, RestByLoc.*" + 
+				"      from (select * " +
+				"            from restaurants " +
+				"            where location_name = ? " +
+				"            order by likes desc) RestByLoc ) " +
+				" where rnum >= ? and rnum <= ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			st.setInt(2, startNum);
+			st.setInt(3, endNum);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				rlist.add(makeRestaurant(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return rlist;
+	}
+	
+	public List<CafeVO> selectCafeByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		
+		List<CafeVO> clist = new ArrayList<>();
+		String sql = 
+				" select * " +
+				" from (select rownum as rnum, CafeByLoc.*" + 
+				"      from (select * " +
+				"            from cafes " +
+				"            where location_name = ? " +
+				"            order by likes desc) CafeByLoc ) " +
+				" where rnum >= ? and rnum <= ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			st.setInt(2, startNum);
+			st.setInt(3, endNum);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				clist.add(makeCafe(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return clist;
+	}
+	
+	public List<ActivityVO> selectActByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		
+		List<ActivityVO> alist = new ArrayList<>();
+		String sql = 
+				" select * " +
+				" from (select rownum as rnum, ActByLoc.*" + 
+				"      from (select * " +
+				"            from activities " +
+				"            where location_name = ? ) ActByLoc ) " +
+				" where rnum >= ? and rnum <= ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			st.setInt(2, startNum);
+			st.setInt(3, endNum);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				alist.add(makeActivity(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return alist;
+	}
+	
+	public List<SafetyRestaurantVO> selectSafetyByLoc(String location_name, int currentPage, int startNum, int endNum) {
+		
+		List<SafetyRestaurantVO> slist = new ArrayList<>();
+		String sql = 
+				" select * " +
+				" from (select rownum as rnum, SafetyByLoc.* " +
+				" from (select * " +
+				" from SAFETY_RESTAURANTS " +
+				" where location_name = (select village " +
+				" from hotplaces " +
+				" where hotplace_name = ?)) SafetyByLoc) " +
+				" where rnum >= ? and rnum <= ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			st.setInt(2, startNum);
+			st.setInt(3, endNum);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				slist.add(makeSafety(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return slist;
+	}
+	
+	public int countRestByLoc(String location_name) {
+		int result = 0;
+		String sql = 
+				" select count(*) from restaurants " +
+				" where location_name = ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return result;
+	}
+	
+	public int countCafeByLoc(String location_name) {
+		int result = 0;
+		String sql = 
+				" select count(*) from cafes " +
+				" where location_name = ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return result;
+	}
+	
+	public int countActByLoc(String location_name) {
+		int result = 0;
+		String sql = 
+				" select count(*) from activities " +
+				" where location_name = ?";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return result;
+	}
+	
+	public int countSafetyByLoc(String location_name) {
+		int result = 0;
+		String sql = 
+				" select count(*) from SAFETY_RESTAURANTS" +
+				" where location_name = (select village" +
+				" from hotplaces" +
+				" where hotplace_name = ?)";
+
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, location_name);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+
+		return result;
 	}
 }
