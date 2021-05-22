@@ -13,10 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import shallWe.Service.DateSelect;
 import shallWe.Service.MemberPlanService;
 import shallWe.Service.PlanService;
+import shallWe.VO.PlanVO;
 
 /**
  * Servlet implementation class Makeplan
@@ -27,29 +29,37 @@ public class MakeplanServlet extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("makePlan.jsp");
-		rd.forward(request, response);
-		//response.sendRedirect("makePlan.jsp");
+		PlanService service = new PlanService();
+		HttpSession session = request.getSession();
+		String memberid = (String) session.getAttribute("memberid");
+	
+		if(memberid == null) {
+			response.sendRedirect("../login/login.jsp");
+		}
+		else {
+			RequestDispatcher rd = request.getRequestDispatcher("makePlan.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String host_id = request.getParameter("host_id");						
 		String plan_name = request.getParameter("plan_name");
-		int numbers = Integer.parseInt(request.getParameter("membercount"));	// ÀÎ¿ø¼ö
-		String plan_id = host_id + System.currentTimeMillis();					// plan id »ý¼º
+		int numbers = Integer.parseInt(request.getParameter("membercount"));	// ï¿½Î¿ï¿½ï¿½ï¿½
+		String plan_id = host_id + System.currentTimeMillis();					// plan id ï¿½ï¿½ï¿½ï¿½
 		
-		// È£½ºÆ®°¡ °í¸¥ Àå¼Ò ÀÌ¸§, À§µµ, °æµµ
+		// È£ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½æµµ
 		String host_place = request.getParameter("host_place");
 		String lat = request.getParameter("host_lat");
 		String lon = request.getParameter("host_lon");
 		double host_lat = Double.parseDouble(lat.equals("")?"0.0":lat);
 		double host_lon = Double.parseDouble(lon.equals("")?"0.0":lon);
 		
-		// È£½ºÆ®°¡ °í¸¥ ³¯Â¥
+		// È£ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Â¥
 		String[] host_dates = request.getParameter("host_dates").split(",");
 		
-		// ÃÊ´ëÇÑ Ä£±¸ ¸®½ºÆ®
+		// ï¿½Ê´ï¿½ï¿½ï¿½ Ä£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		List<String> friend_id_list = new ArrayList<>();
 		Enumeration<String> e = request.getParameterNames();
 		while(e.hasMoreElements()) {
@@ -61,22 +71,22 @@ public class MakeplanServlet extends HttpServlet {
 		}
 		
 		
-		// ¹«Á¶°Ç plans, members_plans(Ä£±¸) ÀÔ·Â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ plans, members_plans(Ä£ï¿½ï¿½) ï¿½Ô·ï¿½
 		// 1. plans inert
 		PlanService ps = new PlanService();
 		ps.insertPlan(plan_id, plan_name, host_id, numbers);
 		
-		// 2. members_plans Ä£±¸
+		// 2. members_plans Ä£ï¿½ï¿½
 		MemberPlanService mps = new MemberPlanService();
 		for(String friend_id : friend_id_list) {
 			mps.insertMemberPlan(plan_id, friend_id, 0.0, 0.0);
 		}
 		
 		// 3. host --> members_plans
-		// Àå¼Ò ¾ÈÁ¤ÇÏ¸é 0.0À¸·Î µé¾î°¡°í Àå¼Ò Á¤ÇÏ¸é À§µµ °æµµ °ªÀÌ µé¾î°¨.
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 0.0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµµ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¨.
 		mps.insertMemberPlan(plan_id, host_id, host_lat, host_lon);
 		
-		// 4. ³¯Â¥ ¼±ÅÃ Çß´Ù¸é --> date_options¿¡ ³¯Â¥µé insert
+		// 4. ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´Ù¸ï¿½ --> date_optionsï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ insert
 		DateSelect ds = new DateSelect();
 		if(!host_dates[0].equals("")) {
 			for(String date:host_dates) {

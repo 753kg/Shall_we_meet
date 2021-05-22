@@ -11,7 +11,7 @@ import shallWe.Util.DBUtil;
 import shallWe.VO.PlanVO;
 
 public class PlanDAO {
-	// 약속생성
+	// �빟�냽�깮�꽦
 	// 1. plan Insert
 	// 2. members_plans Insert
 	// 3. date_options Insert
@@ -44,7 +44,7 @@ public class PlanDAO {
 		return result;
 	}
 
-	// 약속조회
+	// �빟�냽議고쉶
 	public List<PlanVO> selectPlanByMemberId(String memberid) {
 		List<PlanVO> plist = new ArrayList<>();
 		String sql = 
@@ -85,4 +85,24 @@ public class PlanDAO {
 		p.setNumbers(rs.getInt("numbers"));
 		return p;
 	}
+	
+
+	   public int updateHotplace(String plan_id,String hotplace_name) {
+	      int result =0;
+	      String sql = "update plans set hotplace_name = ? " 
+	               + " where plan_id = ?";
+	      Connection conn = DBUtil.getConnection();
+	      PreparedStatement st = null;
+
+	      try {
+	         st = conn.prepareStatement(sql);
+	         st.setString(1, hotplace_name);
+	         st.setString(2, plan_id);
+	         result = st.executeUpdate();
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      return result;
+	   }
 }

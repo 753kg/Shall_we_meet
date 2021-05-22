@@ -30,7 +30,7 @@ public class PlanSelectServlet extends HttpServlet {
 		String memberid = (String) session.getAttribute("memberid");
 	
 		if(memberid == null) {
-			response.sendRedirect("../login/login.jsp");
+			response.sendRedirect("../login/Login");
 		}
 		else {
 			List<PlanVO> planlist = service.selectPlanByMemberId(memberid);

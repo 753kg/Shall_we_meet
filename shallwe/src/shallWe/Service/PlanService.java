@@ -16,5 +16,7 @@ public class PlanService {
 	public List<PlanVO> selectPlanByMemberId(String memberid) {
 		return dao.selectPlanByMemberId(memberid);
 	}
-
+	   public int updateHotplace(String plan_id,String hotplace_name) {
+		      return dao.updateHotplace(plan_id, hotplace_name);
+		   }
 }
