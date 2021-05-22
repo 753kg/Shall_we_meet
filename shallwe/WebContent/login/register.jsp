@@ -1,58 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+%>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/animate.css">   
+    <link rel="stylesheet" href="../frontDesign/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/magnific-popup.css">
+    <link rel="stylesheet" href="../frontDesign/css/flaticon.css">
+    <link rel="stylesheet" href="../frontDesign/css/style.css">
+<style>
+#text-image25{
+	position:absolute; 
+	width:1100px;top:550px;left: 50%;
+	transform: translate( -50%, -50% );
+	}
+#register25{
+	width:400px;
+	top:960px;}	
+
+body{
+background-image: url('../frontDesign/imageSource/배경6.png');
+    background-size : cover;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
-	<h1>Shall We Meet?</h1>
-	<form action="Register" method="post">
-		<div class="id_area">
-			<h3>
+	<jsp:include page="../frontDesign/header.jsp">
+		<jsp:param name="pageName" value="회원가입"/>
+	</jsp:include>
+
+   <section>
+   <div class="content25">
+	<form action="Register" method="post" class="billing-form">
+	<img src="../frontDesign/imageSource/환영합니다.png" id="text-image25" style="width: 400px;">     
+		
+		<div id="register25" >
+		<div class="id_area form-group">
 				<label for="register_id">아이디</label>
-			</h3>
-			<input type="text" id="register_id" name="register_id" required>
+			<input type="text" id="register_id" name="register_id" placeholder="아이디를 입력해주세요." required>
 			<div id="id_check"></div>
 		</div>
-		<div>
-			<h3>
+ 		<div class="form-group">
 				<label for="register_pw">비밀번호</label>
-			</h3>
-			<input type="password" id="register_pw" name="register_pw" required>
+			<input type="password" id="register_pw" name="register_pw" placeholder="아이디를 입력해주세요." required>
 		</div>
-		<div>
-			<h3>
+ 		<div class="form-group">
 				<label for="register_name">이름</label>
-			</h3>
-			<input type="text" id="register_name" name="register_name">
+				<span>* 필수 항목입니다.</span>
+			<input type="text" id="register_name" name="register_name" placeholder="사이트에서 사용할 이름을 입력해주세요.">
 		</div>
-		<div>
-			<h3>
+ 		<div class="form-group">
 				<label for="register_email">이메일</label>
-			</h3>
+				<span>* 필수 항목입니다.</span>
 			<input type="email" id="register_email" name="register_email" required>
 		</div>
-		<div>
-			<h3>
+ 		<div class="form-group">
 				<label for="register_phone">전화번호</label>
-			</h3>
 			<input type="text" id="register_phone" name="register_phone">
 		</div>
-		<div>
-			<h3>
-				<label for="register_security">본인확인용 질문</label>
-			</h3>
-			<p>나의 보물 1호는?</p>
+ 		<div class="form-group">
+			<label for="register_security" >나의 보물 1호는?</label>
+			<span>본인확인용 질문입니다.</span>
 			<input type="text" id="register_security" name="register_security"
-				placeholder="답" required>
+				placeholder="비밀번호 분실 시 사용됩니다." required>
 		</div>
-		<div>
+		<div class="form-group">
 			<input id="reg_submit" type="submit" value="가입하기">
 		</div>
+	</div>
 	</form>
+	</div>
+    </section>
+    
+    <jsp:include page="../frontDesign/footer.jsp">
+		<jsp:param name="top" value="920"/>
+	</jsp:include>
 
 	<script>
 		// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
