@@ -1,0 +1,9 @@
+@charset "UTF-8";
+#text-image25{
+	position:absolute; 
+	width:1100px;top:550px;left: 50%;
+	transform: translate( -50%, -50% );
+	}
+#register25{
+	width:400px;
+	top:960px;}

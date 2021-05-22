@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shallwe.activity">
+
+  <select id="selectRestByLoc" parameterType="map" resultType="restVO">
+  	<![CDATA[
+  	select *
+  	from (select rownum as rnum, RestByLoc.*
+  		  from (select *
+  		  		from restaurants
+  		  		where location_name = #{location_name}
+  		  		order by likes desc) RestByLoc)
+  	where rnum >= #{startNum} and rnum <= #{endNum}
+  	]]>
+  </select>
+  
+  <select id="selectCafeByLoc" parameterType="map" resultType="cafeVO">
+  	<![CDATA[
+  	select *
+  	from (select rownum as rnum, CafeByLoc.*
+  		  from (select *
+  		  		from cafes
+  		  		where location_name = #{location_name}
+  		  		order by likes desc) CafeByLoc)
+  	where rnum >= #{startNum} and rnum <= #{endNum}
+  	]]>
+  </select>
+  
+  <select id="selectActByLoc" parameterType="map" resultType="activityVO">
+  	<![CDATA[
+  	select *
+  	from (select rownum as rnum, ActByLoc.*
+  		  from (select *
+  		  		from activities
+  		  		where location_name = #{location_name}) ActByLoc)
+  	where rnum >= #{startNum} and rnum <= #{endNum}
+  	]]>
+  </select>
+  
+  <select id="selectSafetyByLoc" parameterType="map" resultType="safetyVO">
+  	<![CDATA[
+  	select * 
+	from (select rownum as rnum, SafetyByLoc.*
+		  from (select *
+				from SAFETY_RESTAURANTS
+				where location_name = (select village
+									   from hotplaces
+									   where hotplace_name = #{location_name})) SafetyByLoc)
+	where rnum >= #{startNum} and rnum <= #{endNum}
+  	]]>
+  </select>
+  
+  <select id="countRestByLoc" parameterType="string" resultType="int">
+  	select count(*) 
+  	from restaurants
+	where location_name = #{location_name}
+  </select>
+  
+  <select id="countCafeByLoc" parameterType="string" resultType="int">
+  	select count(*) 
+  	from cafes
+	where location_name = #{location_name}
+  </select>
+  
+  <select id="countActByLoc" parameterType="string" resultType="int">
+  	select count(*) 
+  	from activities
+	where location_name = #{location_name}
+  </select>
+  
+  <select id="countSafetyByLoc" parameterType="string" resultType="int">
+  	select count(*) 
+  	from SAFETY_RESTAURANTS
+	where location_name = (select village
+						   from hotplaces
+						   where hotplace_name = #{location_name})
+  </select>
+  
+</mapper>

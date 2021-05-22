@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shallwe.date">
+
+  <select id="selectMemIdplanId" parameterType="string" resultType="mpVO">
+  	select MEMBER_ID, PLAN_ID
+    from members_plans
+    where plan_id = #{planid}
+  </select>
+  
+  <insert id="insertMasterDate" parameterType="map">
+  	insert into date_options (plan_id, host_date)
+    values (#{planid}, #{hostdate})
+  </insert>
+  
+  <insert id="updateMemberDates" parameterType="map">
+  	insert into dates(member_id, plan_id, select_date)
+    values(#{memberid}, #{planid}, #{memberdates})
+  </insert>
+  
+  <update id="updateFixDate" parameterType="map">
+  	update plans
+    set fixed_date = #{date}
+    where plan_id = #{planid}
+  </update>
+  
+  <select id="selectHostDates" parameterType="string" resultType="dopVO">
+  	select host_date
+    from date_options
+    where plan_id = #{planid}
+  </select>
+  
+  <select id="selectAllDates" parameterType="string" resultType="dateVO">
+  	select select_date , count(member_id)
+    from dates
+    where plan_id = #{planid}
+    group by select_date
+    order by count(member_id) desc
+  </select>
+  
+  <select id="selectCountNDate" parameterType="string" resultType="dcntVO">
+  	select cnt "count", select_date "date"
+	from (select rownum as rnum, mostSelected.*     
+      		from (select select_date, count(member_id) as cnt
+            		from dates
+            		where plan_id = #{planid}
+            		group by select_date
+            		order by cnt desc) mostSelected )
+	where rnum = 1
+  </select>
+  
+</mapper>

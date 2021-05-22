@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shallwe.hotplace">
+  
+  <select id="selectHotplaceLocation" resultType="hotVO">
+  	select * from hotplaces
+  </select>
+  
+  <select id="selectHotplaceLocationByName" parameterType="string" resultType="hotVO">
+  	select * from hotplaces
+  	where hotplace_name = #{hotplaceName}
+  </select>
+  
+</mapper>

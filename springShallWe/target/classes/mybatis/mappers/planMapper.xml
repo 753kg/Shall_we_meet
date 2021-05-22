@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shallwe.plan">
+
+  <insert id="insertPlan" parameterType="map">
+  	insert into plans(plan_id, plan_name, host_id, numbers)
+	values(#{plan_id}, #{plan_name}, #{host_id}, #{numbers})
+  </insert>
+  
+  <select id="selectPlanByMemberId" parameterType="string" resultType="planVO">
+  	select * 
+	from plans
+	where plan_id in (select plan_id
+					  from members_plans
+					  where member_id = #{memberid})
+  </select>
+  
+  <update id="updateHotplace" parameterType="map">
+  	update plans 
+  	set hotplace_name = #{hotplace_name}
+	where plan_id = #{plan_id}
+  </update>
+  
+</mapper>

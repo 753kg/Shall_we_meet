@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shallwe.memberplan">
+
+  <update id="updateMemberLocation" parameterType="mpVO">
+  	update members_plans 
+  	set lat = #{lat}, lon = #{lon}
+  	where member_id = #{member_id} and plan_id = #{plan_id}
+  </update>
+  
+  <select id="selectMemberLocation" parameterType="map" resultType="memlocVO">
+  	select lat, lon
+	from members_plans
+	where plan_id = #{plan_id} and member_id = #{member_id}
+  </select>
+  
+  <select id="selectLocationByGroup" parameterType="string" resultType="mpVO">
+  	select member_id, lat, lon
+	from members_plans
+	where plan_id = #{plan_id}
+  </select>
+  
+  <insert id="insertMemberPlan" parameterType="map">
+  	insert into members_plans(plan_id, member_id, lat, lon)
+  	values(#{plan_id}, #{member_id}, #{lat}, #{lon})
+  </insert>
+  
+</mapper>
