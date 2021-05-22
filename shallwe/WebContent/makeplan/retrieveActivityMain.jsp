@@ -8,33 +8,105 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>만날 장소 추천</title>
+<!-- 전체 Design -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/animate.css">   
+    <link rel="stylesheet" href="../frontDesign/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../frontDesign/css/magnific-popup.css">
+    <link rel="stylesheet" href="../frontDesign/css/flaticon.css">
+    <link rel="stylesheet" href="../frontDesign/css/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+<%--주희 --%>
+<%--<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e4f8aeb0d5079a18f159c0c6462fa4de&libraries=services"></script> --%>
 <%--유연 --%>
-<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script>
+<%--<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35d879296edd941fd4f9bdae91769fa4&libraries=services"></script> --%>
 <%--채연 --%>
-<!-- <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70"></script> -->
+ <script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=45af73bc6fe5e770ab55284433281c70"></script>
 </head>
+<style>
+	body{
+		background-image: url('../frontDesign/imageSource/배경2.png');
+    	background-size : cover;
+	}
+
+	#map{
+	top:500px;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	 font-family: 'IBMPlexSansKR-Regular';
+	}
+	#memberdistance{
+	    position: absolute;
+	    font-family: 'IBMPlexSansKR-Regular';
+	    top:1200px;
+	    left: 400px;
+	}
+	#confirmLocation{
+	    position: absolute;
+	    top:1200px;
+	    left: 850px;
+	}
+	#activity-text{
+	    position: absolute;
+	    font-family: 'IBMPlexSansKR-Regular';
+	    top:1250px;
+	    left: 400px;
+	}
+	#activity_view{
+	position: relative;
+	top:300px;
+	}
+	#footer{
+	visibility: hidden;}
+
+</style>
 <body>
-	<h1>만날 장소 추천!</h1>
+ <jsp:include page="../frontDesign/header_plan.jsp">
+		<jsp:param name="pageName" value="내약속보기"/>
+	</jsp:include>
 
-	<div id="map" style="width: 100%; height: 350px;"></div>
+	
+<!-- 본문 시작 --> 
+	<section>
+   <div class="content25">
+	<img src="../frontDesign/imageSource/만날장소를확인하세요.png" id="text-image25" style="height: 150px; width:auto; left:630px;">     
+	
+
+	<div id="map" style="width: 1100px; height: 500px;"></div>
 	<div id="memberinfo">
-		<h5 id="memberdistance"></h5>
-	</div>
-
-
-	<hr>
+      <p id="memberdistance"></p>
+      <p id="confirmLocation"></p>
+   </div>
+	
+	<p id="activity-text">선택한 지역의 맛집, 놀거리를 확인해보세요!</p>
 	<div id="hlist"></div>
 	<div id="activity_view"></div>
+</div>
+    </section>
+    
+    <!-- footer -->
+    <div id="footer">
+    <jsp:include page="../frontDesign/footer.jsp">
+		<jsp:param name="top" value="500"/>
+	</jsp:include>
+	</div>
 
+</body>
 	<script>	
 	
 
@@ -116,8 +188,12 @@
 					kakao.maps.event.addListener(element, 'click', function() {
 						//거리 계산
 						console.log(index)
-						memberdistance.innerHTML=`${memberid}님의 ` + arr[index] + `까지의 거리는 ` +arr2[index]+`km 입니다`;	
-						
+						memberdistance.innerHTML=`${memberid}님의 출발지에서 ` + arr[index] + `까지의 거리는 ` +arr2[index]+`km 입니다.`;	
+						confirmLocation.innerHTML=`<a href="/shallwe/makeplan/confirmHotplace?plan_id=${plan_id }&hotplace_name=`
+		                     + arr[index] 
+		                     + `">`
+		                     + arr[index]
+		                     +`(으)로 장소 확정하기</a>`;
 						$.ajax({
 	            			url : "AcivitySelect?location_name=" + element.Fb,
 	            			type : "get",
@@ -140,15 +216,15 @@
          		});
 			} */
 
-			var iwContent1 = '<div style="padding:5px;"><a>${hotplaceList[0].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			var iwContent1 = '<div style="padding:5px; "><a>${hotplaceList[0].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:#44A28C" target="_blank">가는 길 찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			iwPosition1 = new kakao.maps.LatLng(${hotplaceList[0].lat}, ${hotplaceList[0].lon}); //인포윈도우 표시 위치입니다
 			
 
-			var iwContent2 = '<div style="padding:5px;"><a>${hotplaceList[1].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			var iwContent2 = '<div style="padding:5px;"><a>${hotplaceList[1].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:#44A28C" target="_blank">가는 길 찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			iwPosition2 = new kakao.maps.LatLng(${hotplaceList[1].lat}, ${hotplaceList[1].lon}); //인포윈도우 표시 위치입니다
 			
 
-			var iwContent3 = '<div style="padding:5px;"><a>${hotplaceList[2].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			var iwContent3 = '<div style="padding:5px;"><a>${hotplaceList[2].hotplace_name}</a><br><a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:#44A28C" target="_blank">가는 길 찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			iwPosition3 = new kakao.maps.LatLng(${hotplaceList[2].lat}, ${hotplaceList[2].lon}); //인포윈도우 표시 위치입니다
 			// 인포윈도우를 생성합니다
 			var infowindow1 = new kakao.maps.InfoWindow({
@@ -173,5 +249,4 @@
 		
 	</script>
 
-</body>
 </html>

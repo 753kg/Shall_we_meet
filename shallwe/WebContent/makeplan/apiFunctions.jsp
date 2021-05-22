@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%--주희꼬 --%>
+	<script type="text/javascript"		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e4f8aeb0d5079a18f159c0c6462fa4de&libraries=services"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
